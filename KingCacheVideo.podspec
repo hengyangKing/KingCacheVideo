@@ -17,14 +17,14 @@ Pod::Spec.new do |s|
 
   s.name         = "KingCacheVideo"
   s.version      = "0.0.1"
-  s.summary      = "KingCacheVideo."
+  s.summary      = "A video player with cache."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = "a video player "
+  s.description  = "高度自定义 video player 当前为0.0.1 测试使用版本 "
 
   s.homepage     = "https://github.com/hengyangKing/KingCacheVideo"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
