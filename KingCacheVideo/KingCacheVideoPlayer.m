@@ -190,11 +190,11 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     _showView.userInteractionEnabled = YES;
     [self.playerView removeFromSuperview];
     self.playerView.frame =CGRectMake(0, 0, _showView.frame.size.width, _showView.frame.size.height);
-    [_showView addSubview:self.playerView];
+    [_showView insertSubview:self.playerView atIndex:0];
     
     self.actIndicator.frame = CGRectMake((CGRectGetWidth(self.playerView.frame) - 44) / 2, (CGRectGetHeight(self.playerView.frame) - 44) / 2, 44, 44);
     [self.actIndicator removeFromSuperview];
-    [_showView addSubview:self.actIndicator];
+    [_showView insertSubview:self.actIndicator aboveSubview:self.playerView];
     self.actIndicator.activityIndicatorViewStyle = self.config.indicatorViewStyle;
     self.actIndicator.hidden = self.config.hiddenIndicatorView;
 }

@@ -27,7 +27,6 @@
         NSLog(@"%f",model.current);
         NSLog(@"%ld",(long)model.playCount);
 
-        
     }];
     NSLog(@"%f", [[KingCacheVideoPlayer sharedInstance] allVideoCacheSize:nil]);
     
