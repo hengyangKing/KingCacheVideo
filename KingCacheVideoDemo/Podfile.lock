@@ -1,0 +1,16 @@
+PODS:
+  - KingCacheVideo (0.0.1)
+
+DEPENDENCIES:
+  - KingCacheVideo (from `../`)
+
+EXTERNAL SOURCES:
+  KingCacheVideo:
+    :path: ../
+
+SPEC CHECKSUMS:
+  KingCacheVideo: 30b119784d480fadf0cc484e630ee2c194de03db
+
+PODFILE CHECKSUM: 11a7813a87dbb3d10ba68bfa18f4eee1f319663c
+
+COCOAPODS: 1.1.1

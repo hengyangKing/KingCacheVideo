@@ -1,0 +1,6 @@
+framework module Pods_KingCacheVideoDemo {
+  umbrella header "Pods-KingCacheVideoDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}

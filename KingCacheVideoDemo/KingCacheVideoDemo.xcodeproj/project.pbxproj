@@ -1,0 +1,406 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		09CC40C11FB41E9B00D8B150 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CC40C01FB41E9B00D8B150 /* AppDelegate.m */; };
+		09CC40C41FB41E9B00D8B150 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CC40C31FB41E9B00D8B150 /* ViewController.m */; };
+		09CC40C71FB41E9B00D8B150 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09CC40C51FB41E9B00D8B150 /* Main.storyboard */; };
+		09CC40C91FB41E9B00D8B150 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09CC40C81FB41E9B00D8B150 /* Assets.xcassets */; };
+		09CC40CC1FB41E9B00D8B150 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09CC40CA1FB41E9B00D8B150 /* LaunchScreen.storyboard */; };
+		09CC40CF1FB41E9B00D8B150 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CC40CE1FB41E9B00D8B150 /* main.m */; };
+		37FC80B29C90FFABC6C1E478 /* Pods_KingCacheVideoDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD23CAB46F4897EA47D173C7 /* Pods_KingCacheVideoDemo.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		09CC40BC1FB41E9B00D8B150 /* KingCacheVideoDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KingCacheVideoDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		09CC40BF1FB41E9B00D8B150 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		09CC40C01FB41E9B00D8B150 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		09CC40C21FB41E9B00D8B150 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		09CC40C31FB41E9B00D8B150 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		09CC40C61FB41E9B00D8B150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		09CC40C81FB41E9B00D8B150 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		09CC40CB1FB41E9B00D8B150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		09CC40CD1FB41E9B00D8B150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09CC40CE1FB41E9B00D8B150 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5A6CB6B06BA6BBC3250D12AA /* Pods-KingCacheVideoDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KingCacheVideoDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KingCacheVideoDemo/Pods-KingCacheVideoDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		6D4484F73B8181EFFC08CE7A /* Pods-KingCacheVideoDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KingCacheVideoDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-KingCacheVideoDemo/Pods-KingCacheVideoDemo.release.xcconfig"; sourceTree = "<group>"; };
+		DD23CAB46F4897EA47D173C7 /* Pods_KingCacheVideoDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KingCacheVideoDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		09CC40B91FB41E9B00D8B150 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37FC80B29C90FFABC6C1E478 /* Pods_KingCacheVideoDemo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09CC40B31FB41E9B00D8B150 = {
+			isa = PBXGroup;
+			children = (
+				09CC40BE1FB41E9B00D8B150 /* KingCacheVideoDemo */,
+				09CC40BD1FB41E9B00D8B150 /* Products */,
+				D5F33D1A0F788861824DC876 /* Pods */,
+				A6DDB3C0D9A05D26397593DF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		09CC40BD1FB41E9B00D8B150 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				09CC40BC1FB41E9B00D8B150 /* KingCacheVideoDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		09CC40BE1FB41E9B00D8B150 /* KingCacheVideoDemo */ = {
+			isa = PBXGroup;
+			children = (
+				09CC40BF1FB41E9B00D8B150 /* AppDelegate.h */,
+				09CC40C01FB41E9B00D8B150 /* AppDelegate.m */,
+				09CC40C21FB41E9B00D8B150 /* ViewController.h */,
+				09CC40C31FB41E9B00D8B150 /* ViewController.m */,
+				09CC40C51FB41E9B00D8B150 /* Main.storyboard */,
+				09CC40C81FB41E9B00D8B150 /* Assets.xcassets */,
+				09CC40CA1FB41E9B00D8B150 /* LaunchScreen.storyboard */,
+				09CC40CD1FB41E9B00D8B150 /* Info.plist */,
+				09CC40CE1FB41E9B00D8B150 /* main.m */,
+			);
+			path = KingCacheVideoDemo;
+			sourceTree = "<group>";
+		};
+		A6DDB3C0D9A05D26397593DF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DD23CAB46F4897EA47D173C7 /* Pods_KingCacheVideoDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D5F33D1A0F788861824DC876 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5A6CB6B06BA6BBC3250D12AA /* Pods-KingCacheVideoDemo.debug.xcconfig */,
+				6D4484F73B8181EFFC08CE7A /* Pods-KingCacheVideoDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		09CC40BB1FB41E9B00D8B150 /* KingCacheVideoDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09CC40D21FB41E9B00D8B150 /* Build configuration list for PBXNativeTarget "KingCacheVideoDemo" */;
+			buildPhases = (
+				815F79D92982F3909703EFAF /* [CP] Check Pods Manifest.lock */,
+				09CC40B81FB41E9B00D8B150 /* Sources */,
+				09CC40B91FB41E9B00D8B150 /* Frameworks */,
+				09CC40BA1FB41E9B00D8B150 /* Resources */,
+				EC8D96670ADB0CB16CFBCA3D /* [CP] Embed Pods Frameworks */,
+				E61ED91412969A4A60D3CECA /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KingCacheVideoDemo;
+			productName = KingCacheVideoDemo;
+			productReference = 09CC40BC1FB41E9B00D8B150 /* KingCacheVideoDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		09CC40B41FB41E9B00D8B150 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = J;
+				TargetAttributes = {
+					09CC40BB1FB41E9B00D8B150 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 09CC40B71FB41E9B00D8B150 /* Build configuration list for PBXProject "KingCacheVideoDemo" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 09CC40B31FB41E9B00D8B150;
+			productRefGroup = 09CC40BD1FB41E9B00D8B150 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				09CC40BB1FB41E9B00D8B150 /* KingCacheVideoDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		09CC40BA1FB41E9B00D8B150 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09CC40CC1FB41E9B00D8B150 /* LaunchScreen.storyboard in Resources */,
+				09CC40C91FB41E9B00D8B150 /* Assets.xcassets in Resources */,
+				09CC40C71FB41E9B00D8B150 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		815F79D92982F3909703EFAF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E61ED91412969A4A60D3CECA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KingCacheVideoDemo/Pods-KingCacheVideoDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC8D96670ADB0CB16CFBCA3D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KingCacheVideoDemo/Pods-KingCacheVideoDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		09CC40B81FB41E9B00D8B150 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09CC40C41FB41E9B00D8B150 /* ViewController.m in Sources */,
+				09CC40CF1FB41E9B00D8B150 /* main.m in Sources */,
+				09CC40C11FB41E9B00D8B150 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		09CC40C51FB41E9B00D8B150 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				09CC40C61FB41E9B00D8B150 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		09CC40CA1FB41E9B00D8B150 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				09CC40CB1FB41E9B00D8B150 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		09CC40D01FB41E9B00D8B150 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		09CC40D11FB41E9B00D8B150 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		09CC40D31FB41E9B00D8B150 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A6CB6B06BA6BBC3250D12AA /* Pods-KingCacheVideoDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZN667QX87P;
+				INFOPLIST_FILE = KingCacheVideoDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.king.KingCacheVideoDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		09CC40D41FB41E9B00D8B150 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D4484F73B8181EFFC08CE7A /* Pods-KingCacheVideoDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZN667QX87P;
+				INFOPLIST_FILE = KingCacheVideoDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.king.KingCacheVideoDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		09CC40B71FB41E9B00D8B150 /* Build configuration list for PBXProject "KingCacheVideoDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09CC40D01FB41E9B00D8B150 /* Debug */,
+				09CC40D11FB41E9B00D8B150 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09CC40D21FB41E9B00D8B150 /* Build configuration list for PBXNativeTarget "KingCacheVideoDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09CC40D31FB41E9B00D8B150 /* Debug */,
+				09CC40D41FB41E9B00D8B150 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 09CC40B41FB41E9B00D8B150 /* Project object */;
+}
