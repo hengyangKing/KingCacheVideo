@@ -1,0 +1,6 @@
+framework module KingCacheVideo {
+  umbrella header "KingCacheVideo-umbrella.h"
+
+  export *
+  module * { export * }
+}

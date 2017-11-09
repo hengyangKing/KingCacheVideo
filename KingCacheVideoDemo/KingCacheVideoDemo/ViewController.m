@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "KingCacheVideoPlayer.h"
+#import "KingCacheVideoPlayer+Cache.h"
 
 @interface ViewController ()
 
@@ -16,7 +18,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    UIView *videoView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width * 0.5625)];
+    [self.view addSubview:videoView];
+    [[KingCacheVideoPlayer sharedInstance]playWithUrl:[NSURL URLWithString:@"http://cdn.xinchao.mobi/imgs/201711/5a02be4dbd7a5.mp4"] withView:videoView andNeedCache:YES];
+    [[KingCacheVideoPlayer sharedInstance]playStatusObserver:^(KingPlayerStatusModel *model){
+        NSLog(@"%f",model.current);
+        
+        
+    }];
+    NSLog(@"%f", [[KingCacheVideoPlayer sharedInstance] allVideoCacheSize]);
+    
+    
 }
 
 

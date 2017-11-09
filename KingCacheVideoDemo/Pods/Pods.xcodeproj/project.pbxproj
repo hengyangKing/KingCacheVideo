@@ -7,43 +7,110 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18DC484126A9276CB81A384A49CA4AA6 /* Pods-KingCacheVideoDemo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 55153F33E9C64BE5798C63782B83F444 /* Pods-KingCacheVideoDemo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		449FF07F3686D1D1F76FCB13F85AE674 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		BC5C49337304FFF8DE0D29FE23DFA2A4 /* Pods-KingCacheVideoDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D202D8787DA6DD501166CE4688FDC6 /* Pods-KingCacheVideoDemo-dummy.m */; };
+		13A0A4938DE4CC1FFE8C7928E4662613 /* NSString+KingStrTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E82A7F7A9CB79D9BDC408D11BF525D6 /* NSString+KingStrTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		215E1B065A137121CE8BC56386F7B713 /* NSString+KingStrTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C29AB02938BA7B25381B52BABBC1691 /* NSString+KingStrTools.m */; };
+		23DD05E46B257A8E68C901E86066E0CD /* KingPlayerStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E3B7884BEC5A630F7AC140B77185F8 /* KingPlayerStatusModel.m */; };
+		24426E496BE3E045504D51CB4E54C4C5 /* Pods-KingCacheVideoDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 25D202D8787DA6DD501166CE4688FDC6 /* Pods-KingCacheVideoDemo-dummy.m */; };
+		28275EB0FADAA6B8E482B9AD3E2CD1DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		2FC0BA218E2B75B9CDA0075A121C2F59 /* KingCacheVideo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F12BA8ECF974EAFEF01A1B755F80939 /* KingCacheVideo-dummy.m */; };
+		469C606C95764C58758E0BB911E85B0B /* KingVideoRequestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7629F18074FE3A1D9713E5DD7235E8 /* KingVideoRequestTask.m */; };
+		4B83D7A8F93370E379B80F282741A3D8 /* KingCacheVideoPlayer+Cache.h in Headers */ = {isa = PBXBuildFile; fileRef = 089CAC054BE983B722A069267484729F /* KingCacheVideoPlayer+Cache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4F1FCADB4116C92266A42599B17905A3 /* KingLoaderURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDDD551FF4F616568D92B21BB351E2B /* KingLoaderURLConnection.m */; };
+		526ED6C96DE86A2E9A29A94246CE218C /* Pods-KingCacheVideoDemo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 55153F33E9C64BE5798C63782B83F444 /* Pods-KingCacheVideoDemo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53BFFE5F946916C3845176C352393B56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		5E6C48B4DC97B69535450B98CFF06219 /* KingCacheVideo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A12B5925ECD5B767AF9BD1236C5F67A2 /* KingCacheVideo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6C924BA373E3103FBCF6BF28877E3D22 /* KingVideoRequestTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 41186869CA1CFE306359EAD5202C53EF /* KingVideoRequestTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E95258DF873885CE4D7561DA6472E5C /* KingPlayerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DDA97F4D3E586A0CA46A900118F778F /* KingPlayerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83F5C41B0B71702209D22E9F79B75D19 /* KingPlayerStatusModel.h in Headers */ = {isa = PBXBuildFile; fileRef = D3A4EE446D86B5035511E0AA9BB6D802 /* KingPlayerStatusModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B6A5B24CE2B3155A6C03438CF76CDCD7 /* KingCacheVideoPlayer+Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AA7C39F6971E77E7CC934E4E9958F0 /* KingCacheVideoPlayer+Cache.m */; };
+		BA7A2B85A0A883C7654F58EE89F40133 /* KingLoaderURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 07776060BFBD3693A8B6E95740AB54F2 /* KingLoaderURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C5390222326446148A57C5644AC5C4B1 /* KingCacheVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F041556DEDE5FC604CC4D06BC6F8CB5 /* KingCacheVideoPlayer.m */; };
+		F09E20830BC47DA1078511D1C6F936CF /* KingPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1471FB785F147BBBDFBF5342D78BC3F1 /* KingPlayerView.m */; };
+		F4FAA3D1CDDF82CB0B0BE0D2D0359D75 /* KingCacheVideoPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B55AF7D35845202968B68016E70371A /* KingCacheVideoPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		57A45883697EB8E73F3A62083D2BA12C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD747BD5409F10A0CF229E0188B41E4F;
+			remoteInfo = KingCacheVideo;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		07776060BFBD3693A8B6E95740AB54F2 /* KingLoaderURLConnection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = KingLoaderURLConnection.h; sourceTree = "<group>"; };
+		089CAC054BE983B722A069267484729F /* KingCacheVideoPlayer+Cache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KingCacheVideoPlayer+Cache.h"; sourceTree = "<group>"; };
+		1471FB785F147BBBDFBF5342D78BC3F1 /* KingPlayerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = KingPlayerView.m; sourceTree = "<group>"; };
+		1F12BA8ECF974EAFEF01A1B755F80939 /* KingCacheVideo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KingCacheVideo-dummy.m"; sourceTree = "<group>"; };
 		25D202D8787DA6DD501166CE4688FDC6 /* Pods-KingCacheVideoDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-KingCacheVideoDemo-dummy.m"; sourceTree = "<group>"; };
 		2B81AA6CCB3618B22B94F1FBEBB2D033 /* Pods-KingCacheVideoDemo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-KingCacheVideoDemo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		2D7629F18074FE3A1D9713E5DD7235E8 /* KingVideoRequestTask.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = KingVideoRequestTask.m; sourceTree = "<group>"; };
+		2E82A7F7A9CB79D9BDC408D11BF525D6 /* NSString+KingStrTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSString+KingStrTools.h"; sourceTree = "<group>"; };
+		30B04D39D98517D189BAD7A9F4654BD3 /* KingCacheVideo-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KingCacheVideo-prefix.pch"; sourceTree = "<group>"; };
+		3BDDD551FF4F616568D92B21BB351E2B /* KingLoaderURLConnection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = KingLoaderURLConnection.m; sourceTree = "<group>"; };
+		3F632499C3ED0F9AAB8EE5003B6F7377 /* Pods_KingCacheVideoDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_KingCacheVideoDemo.framework; path = "Pods-KingCacheVideoDemo.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		41186869CA1CFE306359EAD5202C53EF /* KingVideoRequestTask.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = KingVideoRequestTask.h; sourceTree = "<group>"; };
 		4BF5192AE4E61812BD57263DF817704C /* Pods-KingCacheVideoDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-KingCacheVideoDemo-acknowledgements.plist"; sourceTree = "<group>"; };
+		4DDA97F4D3E586A0CA46A900118F778F /* KingPlayerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = KingPlayerView.h; sourceTree = "<group>"; };
 		55153F33E9C64BE5798C63782B83F444 /* Pods-KingCacheVideoDemo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-KingCacheVideoDemo-umbrella.h"; sourceTree = "<group>"; };
+		5C29AB02938BA7B25381B52BABBC1691 /* NSString+KingStrTools.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSString+KingStrTools.m"; sourceTree = "<group>"; };
+		5F0A3E2F4B3743634F17EA355E53F3F6 /* KingCacheVideo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = KingCacheVideo.modulemap; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		735397E7414837391C1A379F42C29D4D /* Pods_KingCacheVideoDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_KingCacheVideoDemo.framework; path = "Pods-KingCacheVideoDemo.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		695F26FCE0D78390AB4E57FCC7B09BDB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6D6000CF9DD5905B2D2D82E5A7409EB4 /* KingCacheVideo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = KingCacheVideo.framework; path = KingCacheVideo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73AA7C39F6971E77E7CC934E4E9958F0 /* KingCacheVideoPlayer+Cache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KingCacheVideoPlayer+Cache.m"; sourceTree = "<group>"; };
 		88AA83050BBBC8982774C8AA0BB66B30 /* Pods-KingCacheVideoDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KingCacheVideoDemo.release.xcconfig"; sourceTree = "<group>"; };
+		8B55AF7D35845202968B68016E70371A /* KingCacheVideoPlayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = KingCacheVideoPlayer.h; sourceTree = "<group>"; };
+		8F041556DEDE5FC604CC4D06BC6F8CB5 /* KingCacheVideoPlayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = KingCacheVideoPlayer.m; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A12B5925ECD5B767AF9BD1236C5F67A2 /* KingCacheVideo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KingCacheVideo-umbrella.h"; sourceTree = "<group>"; };
 		A5C8E00CA531CCE8E37CDFB826545F3E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5E3B7884BEC5A630F7AC140B77185F8 /* KingPlayerStatusModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = KingPlayerStatusModel.m; sourceTree = "<group>"; };
 		B7478BDAC842FC9E39129BE2B49BE713 /* Pods-KingCacheVideoDemo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-KingCacheVideoDemo.modulemap"; sourceTree = "<group>"; };
 		BF77885DBB5DF2BF2F47D876CC5ED75E /* Pods-KingCacheVideoDemo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-KingCacheVideoDemo-resources.sh"; sourceTree = "<group>"; };
 		C278C9274329769079CB3C1558CB343C /* Pods-KingCacheVideoDemo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-KingCacheVideoDemo-frameworks.sh"; sourceTree = "<group>"; };
+		D3A4EE446D86B5035511E0AA9BB6D802 /* KingPlayerStatusModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = KingPlayerStatusModel.h; sourceTree = "<group>"; };
 		E7454136BDB6AB9B0EB01AD397E5ADA6 /* Pods-KingCacheVideoDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KingCacheVideoDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		F61754B4EF409439D5CDB7C1503E1871 /* KingCacheVideo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KingCacheVideo.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F0EAF9E6A21C0587F1070BA14AAD58F8 /* Frameworks */ = {
+		087010D914D25D5C8D4D9A7A7F6A9322 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				449FF07F3686D1D1F76FCB13F85AE674 /* Foundation.framework in Frameworks */,
+				28275EB0FADAA6B8E482B9AD3E2CD1DC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11C2CD082F001E5854A496004DAD55D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53BFFE5F946916C3845176C352393B56 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3610266A202C85E1B6E3AA0B2B31B2D6 /* Products */ = {
+		56780038B65BA464B50C49A881E51C6C /* KingCacheVideo */ = {
 			isa = PBXGroup;
 			children = (
-				735397E7414837391C1A379F42C29D4D /* Pods_KingCacheVideoDemo.framework */,
+				F2B9D67DB75688405AD08FF01E040A09 /* KingCacheVideo */,
+				8CB99AAE699496A504441CA9D3BB250E /* Support Files */,
+			);
+			name = KingCacheVideo;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		69931FBB3FE3B5E2858194E069B37114 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6D6000CF9DD5905B2D2D82E5A7409EB4 /* KingCacheVideo.framework */,
+				3F632499C3ED0F9AAB8EE5003B6F7377 /* Pods_KingCacheVideoDemo.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,9 +137,9 @@
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				F3D78B50E748A4E90A61EA9644EAC117 /* Development Pods */,
+				A73A1AEA11495E00C9544A5F6D067936 /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				3610266A202C85E1B6E3AA0B2B31B2D6 /* Products */,
+				69931FBB3FE3B5E2858194E069B37114 /* Products */,
 				85853CA5B3D3224C094DE67386376E89 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -85,12 +152,26 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		ACE3910F13D6FCF31A556C2D6A192AFA /* KingCacheVideo */ = {
+		8CB99AAE699496A504441CA9D3BB250E /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
+				695F26FCE0D78390AB4E57FCC7B09BDB /* Info.plist */,
+				5F0A3E2F4B3743634F17EA355E53F3F6 /* KingCacheVideo.modulemap */,
+				F61754B4EF409439D5CDB7C1503E1871 /* KingCacheVideo.xcconfig */,
+				1F12BA8ECF974EAFEF01A1B755F80939 /* KingCacheVideo-dummy.m */,
+				30B04D39D98517D189BAD7A9F4654BD3 /* KingCacheVideo-prefix.pch */,
+				A12B5925ECD5B767AF9BD1236C5F67A2 /* KingCacheVideo-umbrella.h */,
 			);
-			name = KingCacheVideo;
-			path = ../..;
+			name = "Support Files";
+			path = "KingCacheVideoDemo/Pods/Target Support Files/KingCacheVideo";
+			sourceTree = "<group>";
+		};
+		A73A1AEA11495E00C9544A5F6D067936 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				56780038B65BA464B50C49A881E51C6C /* KingCacheVideo */,
+			);
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -109,43 +190,90 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		F3D78B50E748A4E90A61EA9644EAC117 /* Development Pods */ = {
+		F2B9D67DB75688405AD08FF01E040A09 /* KingCacheVideo */ = {
 			isa = PBXGroup;
 			children = (
-				ACE3910F13D6FCF31A556C2D6A192AFA /* KingCacheVideo */,
+				8B55AF7D35845202968B68016E70371A /* KingCacheVideoPlayer.h */,
+				8F041556DEDE5FC604CC4D06BC6F8CB5 /* KingCacheVideoPlayer.m */,
+				089CAC054BE983B722A069267484729F /* KingCacheVideoPlayer+Cache.h */,
+				73AA7C39F6971E77E7CC934E4E9958F0 /* KingCacheVideoPlayer+Cache.m */,
+				07776060BFBD3693A8B6E95740AB54F2 /* KingLoaderURLConnection.h */,
+				3BDDD551FF4F616568D92B21BB351E2B /* KingLoaderURLConnection.m */,
+				D3A4EE446D86B5035511E0AA9BB6D802 /* KingPlayerStatusModel.h */,
+				A5E3B7884BEC5A630F7AC140B77185F8 /* KingPlayerStatusModel.m */,
+				4DDA97F4D3E586A0CA46A900118F778F /* KingPlayerView.h */,
+				1471FB785F147BBBDFBF5342D78BC3F1 /* KingPlayerView.m */,
+				41186869CA1CFE306359EAD5202C53EF /* KingVideoRequestTask.h */,
+				2D7629F18074FE3A1D9713E5DD7235E8 /* KingVideoRequestTask.m */,
+				2E82A7F7A9CB79D9BDC408D11BF525D6 /* NSString+KingStrTools.h */,
+				5C29AB02938BA7B25381B52BABBC1691 /* NSString+KingStrTools.m */,
 			);
-			name = "Development Pods";
+			name = KingCacheVideo;
+			path = KingCacheVideo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		40CB9272A8354CECD602FAC937C711AA /* Headers */ = {
+		4D2F8F698EA9F9A897CECCBF4F7EA09A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18DC484126A9276CB81A384A49CA4AA6 /* Pods-KingCacheVideoDemo-umbrella.h in Headers */,
+				526ED6C96DE86A2E9A29A94246CE218C /* Pods-KingCacheVideoDemo-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A16726AE69FB8DFC8B5918E3C2ED21C4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E6C48B4DC97B69535450B98CFF06219 /* KingCacheVideo-umbrella.h in Headers */,
+				4B83D7A8F93370E379B80F282741A3D8 /* KingCacheVideoPlayer+Cache.h in Headers */,
+				F4FAA3D1CDDF82CB0B0BE0D2D0359D75 /* KingCacheVideoPlayer.h in Headers */,
+				BA7A2B85A0A883C7654F58EE89F40133 /* KingLoaderURLConnection.h in Headers */,
+				83F5C41B0B71702209D22E9F79B75D19 /* KingPlayerStatusModel.h in Headers */,
+				7E95258DF873885CE4D7561DA6472E5C /* KingPlayerView.h in Headers */,
+				6C924BA373E3103FBCF6BF28877E3D22 /* KingVideoRequestTask.h in Headers */,
+				13A0A4938DE4CC1FFE8C7928E4662613 /* NSString+KingStrTools.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		553BDCE5184A11CA05C8790B4E2047EB /* Pods-KingCacheVideoDemo */ = {
+		238946F39AF14AD5A6F2677B7C685B7A /* Pods-KingCacheVideoDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 53FF08370381B060917B22CAAB964A50 /* Build configuration list for PBXNativeTarget "Pods-KingCacheVideoDemo" */;
+			buildConfigurationList = 27E53D8F8BAD9F98674FB2079C4A60DF /* Build configuration list for PBXNativeTarget "Pods-KingCacheVideoDemo" */;
 			buildPhases = (
-				07B27BE56D6B8F699425ECB3FD844424 /* Sources */,
-				F0EAF9E6A21C0587F1070BA14AAD58F8 /* Frameworks */,
-				40CB9272A8354CECD602FAC937C711AA /* Headers */,
+				3EFDE216E1AA965D25FD26A558FCA3DB /* Sources */,
+				11C2CD082F001E5854A496004DAD55D7 /* Frameworks */,
+				4D2F8F698EA9F9A897CECCBF4F7EA09A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0B13666C6FA7A79796C2200735CD537F /* PBXTargetDependency */,
+			);
+			name = "Pods-KingCacheVideoDemo";
+			productName = "Pods-KingCacheVideoDemo";
+			productReference = 3F632499C3ED0F9AAB8EE5003B6F7377 /* Pods_KingCacheVideoDemo.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FD747BD5409F10A0CF229E0188B41E4F /* KingCacheVideo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74991F26B2DA3A3F5572A00A34827656 /* Build configuration list for PBXNativeTarget "KingCacheVideo" */;
+			buildPhases = (
+				3AFF98BB37E82FB5EDD9A3A58C4B1613 /* Sources */,
+				087010D914D25D5C8D4D9A7A7F6A9322 /* Frameworks */,
+				A16726AE69FB8DFC8B5918E3C2ED21C4 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-KingCacheVideoDemo";
-			productName = "Pods-KingCacheVideoDemo";
-			productReference = 735397E7414837391C1A379F42C29D4D /* Pods_KingCacheVideoDemo.framework */;
+			name = KingCacheVideo;
+			productName = KingCacheVideo;
+			productReference = 6D6000CF9DD5905B2D2D82E5A7409EB4 /* KingCacheVideo.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -165,62 +293,83 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 3610266A202C85E1B6E3AA0B2B31B2D6 /* Products */;
+			productRefGroup = 69931FBB3FE3B5E2858194E069B37114 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				553BDCE5184A11CA05C8790B4E2047EB /* Pods-KingCacheVideoDemo */,
+				FD747BD5409F10A0CF229E0188B41E4F /* KingCacheVideo */,
+				238946F39AF14AD5A6F2677B7C685B7A /* Pods-KingCacheVideoDemo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		07B27BE56D6B8F699425ECB3FD844424 /* Sources */ = {
+		3AFF98BB37E82FB5EDD9A3A58C4B1613 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC5C49337304FFF8DE0D29FE23DFA2A4 /* Pods-KingCacheVideoDemo-dummy.m in Sources */,
+				2FC0BA218E2B75B9CDA0075A121C2F59 /* KingCacheVideo-dummy.m in Sources */,
+				B6A5B24CE2B3155A6C03438CF76CDCD7 /* KingCacheVideoPlayer+Cache.m in Sources */,
+				C5390222326446148A57C5644AC5C4B1 /* KingCacheVideoPlayer.m in Sources */,
+				4F1FCADB4116C92266A42599B17905A3 /* KingLoaderURLConnection.m in Sources */,
+				23DD05E46B257A8E68C901E86066E0CD /* KingPlayerStatusModel.m in Sources */,
+				F09E20830BC47DA1078511D1C6F936CF /* KingPlayerView.m in Sources */,
+				469C606C95764C58758E0BB911E85B0B /* KingVideoRequestTask.m in Sources */,
+				215E1B065A137121CE8BC56386F7B713 /* NSString+KingStrTools.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EFDE216E1AA965D25FD26A558FCA3DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24426E496BE3E045504D51CB4E54C4C5 /* Pods-KingCacheVideoDemo-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0B13666C6FA7A79796C2200735CD537F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KingCacheVideo;
+			target = FD747BD5409F10A0CF229E0188B41E4F /* KingCacheVideo */;
+			targetProxy = 57A45883697EB8E73F3A62083D2BA12C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		00989F31904AD1E558F65681A045849B /* Release */ = {
+		0A676A428A79D829E9D43E4EB3482B5B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 88AA83050BBBC8982774C8AA0BB66B30 /* Pods-KingCacheVideoDemo.release.xcconfig */;
+			baseConfigurationReference = F61754B4EF409439D5CDB7C1503E1871 /* KingCacheVideo.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-KingCacheVideoDemo/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/KingCacheVideo/KingCacheVideo-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KingCacheVideo/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-KingCacheVideoDemo/Pods-KingCacheVideoDemo.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_KingCacheVideoDemo;
+				MODULEMAP_FILE = "Target Support Files/KingCacheVideo/KingCacheVideo.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = KingCacheVideo;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		34FE9531DA9AF2820790339988D5FF41 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -266,41 +415,37 @@
 			};
 			name = Release;
 		};
-		AA34A82181A70128468BC88F82FC05EB /* Debug */ = {
+		549AC8A76363BCAE7B4315708DEB81EC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7454136BDB6AB9B0EB01AD397E5ADA6 /* Pods-KingCacheVideoDemo.debug.xcconfig */;
+			baseConfigurationReference = F61754B4EF409439D5CDB7C1503E1871 /* KingCacheVideo.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-KingCacheVideoDemo/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/KingCacheVideo/KingCacheVideo-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KingCacheVideo/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-KingCacheVideoDemo/Pods-KingCacheVideoDemo.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_KingCacheVideoDemo;
+				MODULEMAP_FILE = "Target Support Files/KingCacheVideo/KingCacheVideo.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = KingCacheVideo;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		C104F7F091290C3D1E248192F07FE689 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -350,9 +495,90 @@
 			};
 			name = Debug;
 		};
+		C3CBEA6A57F9BC901E2605DD368401AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88AA83050BBBC8982774C8AA0BB66B30 /* Pods-KingCacheVideoDemo.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-KingCacheVideoDemo/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-KingCacheVideoDemo/Pods-KingCacheVideoDemo.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_KingCacheVideoDemo;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FE72A732F97A67CF43A8973F94147303 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7454136BDB6AB9B0EB01AD397E5ADA6 /* Pods-KingCacheVideoDemo.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-KingCacheVideoDemo/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-KingCacheVideoDemo/Pods-KingCacheVideoDemo.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_KingCacheVideoDemo;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		27E53D8F8BAD9F98674FB2079C4A60DF /* Build configuration list for PBXNativeTarget "Pods-KingCacheVideoDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE72A732F97A67CF43A8973F94147303 /* Debug */,
+				C3CBEA6A57F9BC901E2605DD368401AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -362,11 +588,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		53FF08370381B060917B22CAAB964A50 /* Build configuration list for PBXNativeTarget "Pods-KingCacheVideoDemo" */ = {
+		74991F26B2DA3A3F5572A00A34827656 /* Build configuration list for PBXNativeTarget "KingCacheVideo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA34A82181A70128468BC88F82FC05EB /* Debug */,
-				00989F31904AD1E558F65681A045849B /* Release */,
+				0A676A428A79D829E9D43E4EB3482B5B /* Debug */,
+				549AC8A76363BCAE7B4315708DEB81EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
