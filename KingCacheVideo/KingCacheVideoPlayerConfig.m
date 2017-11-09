@@ -11,7 +11,7 @@
 +(instancetype)defaultConfig
 {
     KingCacheVideoPlayerConfig *config= [[KingCacheVideoPlayerConfig alloc]init];
-    config.KingVideoPlayerConfigINBGStop(YES).KingVideoPlayerConfigPlayRepatCount(1).KingVideoPlayerConfigPlayBGColor([UIColor blackColor]).KingVideoPlayerConfigHiddenIndicatorView(NO).KingVideoPlayerConfigIndicatorViewStyle(UIActivityIndicatorViewStyleWhite).KingCacheVideoPlayerNeedCache(YES);
+    config.KingVideoPlayerConfigINBGStop(YES).KingVideoPlayerConfigPlayRepatCount(1).KingVideoPlayerConfigPlayBGColor([UIColor blackColor]).KingVideoPlayerConfigHiddenIndicatorView(NO).KingVideoPlayerConfigIndicatorViewStyle(UIActivityIndicatorViewStyleWhite).KingCacheVideoPlayerNeedCache(YES).KingVideoPlayerConfigFeedbackTime(CMTimeMake(1, 3));
     
     NSString *document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
     
@@ -47,6 +47,10 @@
 -(void)setCachePath:(NSString *)cachePath
 {
     _cachePath=cachePath;
+}
+-(void)setFeedbackTime:(CMTime)feedbackTime
+{
+    _feedbackTime = feedbackTime;
 }
 #pragma get
 -(KingCacheVideoPlayerConfig *(^)(BOOL))KingVideoPlayerConfigINBGStop
@@ -95,5 +99,11 @@
         return self;
     };
 }
-
+-(KingCacheVideoPlayerConfig *(^)(CMTime))KingVideoPlayerConfigFeedbackTime
+{
+    return ^(CMTime time){
+        self.feedbackTime = time;
+        return self;
+    };
+}
 @end

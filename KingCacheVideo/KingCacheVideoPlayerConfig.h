@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <CoreMedia/CMTime.h>
 @interface KingCacheVideoPlayerConfig : NSObject
 +(instancetype)defaultConfig;
 /**
@@ -43,6 +43,8 @@
 @property (nonatomic,copy,readonly)NSString *cachePath;
 
 
+@property (nonatomic,assign,readonly)CMTime feedbackTime;
+
 @property(nonatomic,copy,readonly)KingCacheVideoPlayerConfig *(^KingCacheVideoPlayerNeedCache)(BOOL needCache);
 
 @property(nonatomic,copy,readonly)KingCacheVideoPlayerConfig* (^KingVideoPlayerConfigINBGStop)(BOOL stopInBackground);
@@ -58,6 +60,7 @@
 
 @property(nonatomic,copy,readonly)KingCacheVideoPlayerConfig *(^KingVideoPlayerConfigCachePath)(NSString *filePath);
 
+@property(nonatomic,copy,readonly)KingCacheVideoPlayerConfig *(^KingVideoPlayerConfigFeedbackTime)(CMTime feedbackTime);
 
 
 @end

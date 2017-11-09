@@ -46,9 +46,21 @@
 {
     _state = state;
 }
+-(void)setErrorState:(KingPlayerErrorState)errorState
+{
+    _errorState = errorState;
+}
 -(void)setPlayCount:(NSInteger)playCount
 {
     _playCount=playCount;
+}
+-(void)setIsFinishLoad:(BOOL)isFinishLoad
+{
+    _isFinishLoad = isFinishLoad;
+}
+-(void)setIsLocalVideo:(BOOL)isLocalVideo
+{
+    _isLocalVideo=isLocalVideo;
 }
 #pragma get
 -(CGFloat)playProgress
@@ -96,10 +108,48 @@
         return self;
     };
 }
+-(KingPlayerStatusModel *(^)(NSInteger))KingPlayerErrorState
+{
+    return ^(NSInteger code){
+        switch (code) {
+            case -1001:
+                self.errorState = KingPlayerErrorStateIsTimeOut;
+                break;
+            case -1004:
+                self.errorState = KingPlayerErrorStateIsServerError;
+                break;
+            case -1005:
+                self.errorState = KingPlayerErrorStateIsNetworkInterruption;
+                break;
+            case -1009:
+                self.errorState = KingPlayerErrorStateIsconnectionless;
+                break;
+                
+            default:
+                self.errorState = KingPlayerErrorStateIsUnknow;
+                break;
+        }
+        return self;
+    };
+}
 -(KingPlayerStatusModel *(^)(NSInteger))KingPlayerPlayCount
 {
     return ^(NSInteger count){
         self.playCount = count;
+        return self;
+    };
+}
+-(KingPlayerStatusModel *(^)(BOOL))KingPlayerPlayLoadingFinish
+{
+    return ^(BOOL isloadFinish){
+        self.isFinishLoad = isloadFinish;
+        return self;
+    };
+}
+-(KingPlayerStatusModel *(^)(BOOL))KingPlayerPlayIsLocalVideo
+{
+    return ^(BOOL isLocalVideo){
+        self.isLocalVideo = isLocalVideo;
         return self;
     };
 }

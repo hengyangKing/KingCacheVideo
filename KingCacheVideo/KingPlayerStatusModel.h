@@ -13,6 +13,14 @@ typedef NS_ENUM(NSInteger, KingPlayerState) {
     KingPlayerStateStopped,          //播放结束
     KingPlayerStatePause,            //暂停播放
     KingPlayerStateFinish,           //播放完成
+    KingPlayerStateFinishLoad,       //加载完成
+};
+typedef NS_ENUM(NSInteger, KingPlayerErrorState) {
+    KingPlayerErrorStateIsTimeOut = -1001,    //请求超时
+    KingPlayerErrorStateIsServerError  = -1004,//服务器错误
+    KingPlayerErrorStateIsNetworkInterruption =-1005,//网络中断
+    KingPlayerErrorStateIsconnectionless =-1009,//无网络连接
+    KingPlayerErrorStateIsUnknow =-1010,//未知状态
 };
 @interface KingPlayerStatusModel : NSObject
 +(instancetype)defaultModel;
@@ -20,8 +28,12 @@ typedef NS_ENUM(NSInteger, KingPlayerState) {
 /**
  视频Player状态
  */
-@property (nonatomic, assign,readonly) KingPlayerState state;
+@property (nonatomic, assign,readonly)KingPlayerState state;
 
+/**
+ 视频播放错误状态
+ */
+@property (nonatomic,assign,readonly)KingPlayerErrorState errorState;
 /**
  当前播放时间str
  */
@@ -54,6 +66,15 @@ typedef NS_ENUM(NSInteger, KingPlayerState) {
  当前播放次数
  */
 @property (nonatomic, assign,readonly) NSInteger playCount;
+/**
+ 是否下载完毕
+ */
+@property (nonatomic, assign,readonly) BOOL  isFinishLoad;
+
+/**
+ 是否播放本地文件
+ */
+@property (nonatomic, assign,readonly) BOOL  isLocalVideo;
 
 
 @property(nonatomic,copy,readonly)KingPlayerStatusModel *(^KingPlayerCurrent)(CGFloat time);
@@ -64,6 +85,12 @@ typedef NS_ENUM(NSInteger, KingPlayerState) {
 
 @property(nonatomic,copy,readonly)KingPlayerStatusModel *(^KingPlayerPlayState)(KingPlayerState state);
 
+@property(nonatomic,copy,readonly)KingPlayerStatusModel *(^KingPlayerErrorState)(NSInteger state);
+
 @property(nonatomic,copy,readonly)KingPlayerStatusModel *(^KingPlayerPlayCount)(NSInteger count);
+
+@property(nonatomic,copy,readonly)KingPlayerStatusModel *(^KingPlayerPlayLoadingFinish)(BOOL isloadFinish);
+
+@property(nonatomic,copy,readonly)KingPlayerStatusModel *(^KingPlayerPlayIsLocalVideo)(BOOL isLocalVideo);
 
 @end

@@ -33,9 +33,6 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 @property (nonatomic, strong) AVPlayerItem   *currentPlayerItem;
 @property (nonatomic, strong) NSObject       *playbackTimeObserver;
 @property (nonatomic, assign) BOOL           isPauseByUser;           //是否被用户暂停
-@property (nonatomic, assign) BOOL           isLocalVideo;            //是否播放本地文件
-@property (nonatomic, assign) BOOL           isFinishLoad;            //是否下载完毕
-
 @property (nonatomic, weak  ) UIView         *showView;
 @property (nonatomic, assign) CGRect         showViewRect;            //视频展示ViewRect
 @property (nonatomic, strong) KingPlayerView  *playerView;
@@ -43,8 +40,22 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 @property (nonatomic, strong) UIActivityIndicatorView *actIndicator;  //加载视频时的旋转菊花
 
 @property (nonatomic, strong) KingLoaderURLConnection *resouerLoader;
+
+/**
+ 当前状态block
+ */
 @property (nonatomic,copy)void (^playStatusBlock)(KingPlayerStatusModel *statusModel);
+
+/**
+ 设置状态block
+ */
 @property (nonatomic,copy)void (^playConfig)(KingCacheVideoPlayerConfig *config);
+
+/**
+ 播放下一个block
+ */
+@property (nonatomic, copy) void(^playNextBlock)(void);
+
 @end
 @implementation KingCacheVideoPlayer
 + (instancetype)sharedInstance {
@@ -96,7 +107,11 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 }
 -(void)playStatusObserver:(void (^)(KingPlayerStatusModel *))status
 {
-    _playStatusBlock =status;
+    self.playStatusBlock =status;
+}
+-(void)playFinishBlock:(void (^)())finishBlock
+{
+    self.playNextBlock = finishBlock;
 }
 #pragma mark play
 - (void)playWithUrl:(NSURL *)url withView:(UIView *)showView andConfig:(void(^)(KingCacheVideoPlayerConfig *))config {
@@ -142,11 +157,14 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
         [_videoURLAsset.resourceLoader setDelegate:self.resouerLoader queue:dispatch_get_main_queue()];
         self.currentPlayerItem      = [AVPlayerItem playerItemWithAsset:_videoURLAsset];
         
-        _isLocalVideo = NO;
+        self.statusModel.KingPlayerPlayIsLocalVideo(NO);
+        self.statusModel.KingPlayerPlayLoadingFinish(NO);
+
     } else {
         self.videoAsset = [AVURLAsset URLAssetWithURL:url options:nil];
         self.currentPlayerItem = [AVPlayerItem playerItemWithAsset:_videoAsset];
-        _isLocalVideo = YES;
+        self.statusModel.KingPlayerPlayIsLocalVideo(YES);
+        self.statusModel.KingPlayerPlayLoadingFinish(YES);
     }
     
     if (!self.player) {
@@ -302,7 +320,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     [self.player play];
     
     __weak __typeof(self)weakSelf = self;
-    self.playbackTimeObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:NULL usingBlock:^(CMTime time) {
+    self.playbackTimeObserver = [self.player addPeriodicTimeObserverForInterval:self.config.feedbackTime queue:NULL usingBlock:^(CMTime time) {
         
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         CGFloat current = playerItem.currentTime.value / playerItem.currentTime.timescale;
@@ -444,7 +462,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 
 - (void)didFinishLoadingWithTask:(KingVideoRequestTask *)task
 {
-    _isFinishLoad = task.isFinishLoad;
+    self.statusModel.KingPlayerPlayLoadingFinish(task.isFinishLoad);
 }
 
 //网络中断：-1005
@@ -455,27 +473,11 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 
 - (void)didFailLoadingWithTask:(KingVideoRequestTask *)task withError:(NSInteger )errorCode
 {
-    NSString *str = nil;
-    switch (errorCode) {
-        case -1001:
-            str = @"请求超时";
-            break;
-        case -1003:
-        case -1004:
-            str = @"服务器错误";
-            break;
-        case -1005:
-            str = @"网络中断";
-            break;
-        case -1009:
-            str = @"无网络连接";
-            break;
-            
-        default:
-            str = [NSString stringWithFormat:@"%@", @"(_errorCode)"];
-            break;
+    self.statusModel.KingPlayerErrorState(errorCode);
+    if (self.playStatusBlock) {
+        self.playStatusBlock(self.statusModel);
     }
-    NSLog(@"%@", str);
+    
 }
 - (void)releasePlayer {
     if (!self.currentPlayerItem) {

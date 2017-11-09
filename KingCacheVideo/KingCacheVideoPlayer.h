@@ -17,12 +17,7 @@ FOUNDATION_EXPORT NSString *const kKingPlayerLoadProgressChangedNotification;
 
 @interface KingCacheVideoPlayer : NSObject
 
-@property (nonatomic, copy) void(^playNextBlock)(void);                 //播放下一个block
-
 + (instancetype)sharedInstance;
-
-
-
 /**
   播放服务器的视频，先判断本地是否有缓存文件，缓存文件名为连接的url经过md5加密后生成的字符串
 
@@ -61,4 +56,13 @@ FOUNDATION_EXPORT NSString *const kKingPlayerLoadProgressChangedNotification;
  @param status 状态模型
  */
 -(void)playStatusObserver:(void(^)(KingPlayerStatusModel *statusModel))status;
+
+/**
+ 播放完成回调block
+
+ @param finishBlock 完成回调
+ */
+-(void)playFinishBlock:(void(^)())finishBlock;
+
+
 @end
