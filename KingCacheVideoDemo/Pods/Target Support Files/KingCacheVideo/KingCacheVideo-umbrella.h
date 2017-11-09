@@ -4,6 +4,7 @@
 
 #import "KingCacheVideoPlayer+Cache.h"
 #import "KingCacheVideoPlayer.h"
+#import "KingCacheVideoPlayerConfig.h"
 #import "KingLoaderURLConnection.h"
 #import "KingPlayerStatusModel.h"
 #import "KingPlayerView.h"

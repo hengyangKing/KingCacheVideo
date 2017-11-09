@@ -14,7 +14,7 @@
 @implementation KingPlayerStatusModel
 +(instancetype)defaultModel{
     KingPlayerStatusModel *model = [[KingPlayerStatusModel alloc]init];
-    model.KingPlayerDuration(0).KingPlayerCurrent(0).KingPlayerLoadedProgress(0);
+    model.KingPlayerDuration(0).KingPlayerCurrent(0).KingPlayerLoadedProgress(0).KingPlayerPlayCount(1);
     
     return model;
     
@@ -45,6 +45,10 @@
 -(void)setState:(KingPlayerState)state
 {
     _state = state;
+}
+-(void)setPlayCount:(NSInteger)playCount
+{
+    _playCount=playCount;
 }
 #pragma get
 -(CGFloat)playProgress
@@ -92,7 +96,13 @@
         return self;
     };
 }
-
+-(KingPlayerStatusModel *(^)(NSInteger))KingPlayerPlayCount
+{
+    return ^(NSInteger count){
+        self.playCount = count;
+        return self;
+    };
+}
 
 #pragma mark update
 /**
@@ -128,7 +138,4 @@
     }
     self.KingPlayerTotolTime(strtotol);
 }
-
-
-
 @end

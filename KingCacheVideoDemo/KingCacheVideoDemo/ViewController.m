@@ -20,13 +20,16 @@
     [super viewDidLoad];
     UIView *videoView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width * 0.5625)];
     [self.view addSubview:videoView];
-    [[KingCacheVideoPlayer sharedInstance]playWithUrl:[NSURL URLWithString:@"http://cdn.xinchao.mobi/imgs/201711/5a02be4dbd7a5.mp4"] withView:videoView andNeedCache:YES];
+    [[KingCacheVideoPlayer sharedInstance]playWithUrl:[NSURL URLWithString:@"http://cdn.xinchao.mobi/imgs/201711/5a02be4dbd7a5.mp4"] withView:videoView andConfig:^void (KingCacheVideoPlayerConfig *config) {
+        config.KingVideoPlayerConfigPlayRepatCount(3);
+    }];
     [[KingCacheVideoPlayer sharedInstance]playStatusObserver:^(KingPlayerStatusModel *model){
         NSLog(@"%f",model.current);
-        
+        NSLog(@"%ld",(long)model.playCount);
+
         
     }];
-    NSLog(@"%f", [[KingCacheVideoPlayer sharedInstance] allVideoCacheSize]);
+    NSLog(@"%f", [[KingCacheVideoPlayer sharedInstance] allVideoCacheSize:nil]);
     
     
 }

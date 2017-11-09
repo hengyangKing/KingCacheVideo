@@ -50,6 +50,11 @@ typedef NS_ENUM(NSInteger, KingPlayerState) {
  */
 @property (nonatomic, assign,readonly)CGFloat playProgress;
 
+/**
+ 当前播放次数
+ */
+@property (nonatomic, assign,readonly) NSInteger playCount;
+
 
 @property(nonatomic,copy,readonly)KingPlayerStatusModel *(^KingPlayerCurrent)(CGFloat time);
 
@@ -59,5 +64,6 @@ typedef NS_ENUM(NSInteger, KingPlayerState) {
 
 @property(nonatomic,copy,readonly)KingPlayerStatusModel *(^KingPlayerPlayState)(KingPlayerState state);
 
+@property(nonatomic,copy,readonly)KingPlayerStatusModel *(^KingPlayerPlayCount)(NSInteger count);
 
 @end

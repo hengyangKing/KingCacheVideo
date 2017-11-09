@@ -11,12 +11,12 @@
 /**
  *  清除所有本地缓存视频文件
  */
-- (void)clearAllVideoCache;
+- (void)clearAllVideoCache:(NSString *)cachePath;
 
 /**
  *  计算所有视频缓存大小
  *
  *  @return 视频缓存大小
  */
-- (double)allVideoCacheSize;
+- (double)allVideoCacheSize:(NSString *)cachePath;
 @end

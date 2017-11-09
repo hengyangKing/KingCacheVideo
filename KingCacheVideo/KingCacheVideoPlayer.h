@@ -9,6 +9,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "KingPlayerStatusModel.h"
+#import "KingCacheVideoPlayerConfig.h"
 
 FOUNDATION_EXPORT NSString *const kKingPlayerStateChangedNotification;
 FOUNDATION_EXPORT NSString *const kKingPlayerProgressChangedNotification;
@@ -16,24 +17,20 @@ FOUNDATION_EXPORT NSString *const kKingPlayerLoadProgressChangedNotification;
 
 @interface KingCacheVideoPlayer : NSObject
 
-@property (nonatomic, assign) BOOL  stopInBackground;        //是否在后台播放，默认YES
-
-@property (nonatomic, assign) NSInteger playCount;                    //当前播放次数
-@property (nonatomic, assign) NSInteger playRepatCount;               //重复播放次数
-
 @property (nonatomic, copy) void(^playNextBlock)(void);                 //播放下一个block
 
 + (instancetype)sharedInstance;
 
 
+
 /**
- *  播放服务器的视频，先判断本地是否有缓存文件，缓存文件名为连接的url经过md5加密后生成的字符串
+  播放服务器的视频，先判断本地是否有缓存文件，缓存文件名为连接的url经过md5加密后生成的字符串
 
  @param url url
  @param showView showview
- @param needCache needCache
+ @param config config
  */
-- (void)playWithUrl:(NSURL *)url withView:(UIView *)showView andNeedCache:(BOOL)needCache;
+- (void)playWithUrl:(NSURL *)url withView:(UIView *)showView andConfig:(void(^)(KingCacheVideoPlayerConfig *config))config;
 
 /**
  *  指定到某一事件点开始播放
@@ -64,5 +61,4 @@ FOUNDATION_EXPORT NSString *const kKingPlayerLoadProgressChangedNotification;
  @param status 状态模型
  */
 -(void)playStatusObserver:(void(^)(KingPlayerStatusModel *statusModel))status;
-
 @end

@@ -18,5 +18,10 @@
   "source_files": [
     "KingCacheVideo",
     "KingCacheVideo/**/*.{h,m}"
+  ],
+  "frameworks": [
+    "MediaPlayer",
+    "AVFoundation",
+    "MobileCoreServices"
   ]
 }

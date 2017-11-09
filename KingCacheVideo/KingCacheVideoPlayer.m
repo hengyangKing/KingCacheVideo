@@ -24,7 +24,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 
 @interface KingCacheVideoPlayer()<KingLoaderURLConnectionDelegate, UIGestureRecognizerDelegate>
 @property(nonatomic,strong)KingPlayerStatusModel *statusModel;
-
+@property(nonatomic,strong)KingCacheVideoPlayerConfig *config;
 @property (nonatomic, assign) KingPlayerState state;
 @property (nonatomic, assign) CGFloat        loadedProgress;
 @property (nonatomic, strong) AVURLAsset     *videoURLAsset;
@@ -44,6 +44,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 
 @property (nonatomic, strong) KingLoaderURLConnection *resouerLoader;
 @property (nonatomic,copy)void (^playStatusBlock)(KingPlayerStatusModel *statusModel);
+@property (nonatomic,copy)void (^playConfig)(KingCacheVideoPlayerConfig *config);
 @end
 @implementation KingCacheVideoPlayer
 + (instancetype)sharedInstance {
@@ -64,9 +65,6 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
         _isPauseByUser = YES;
         _loadedProgress = 0;
         _state = KingPlayerStateStopped;
-        _stopInBackground = YES;
-        _playRepatCount = 1;
-        _playCount = 1;
         }
     return self;
 }
@@ -83,6 +81,13 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     }
     return _statusModel;
 }
+-(KingCacheVideoPlayerConfig *)config
+{
+    if (!_config) {
+        _config =[KingCacheVideoPlayerConfig defaultConfig];
+    }
+    return _config;
+}
 - (UIActivityIndicatorView *)actIndicator {
     if (!_actIndicator) {
         _actIndicator = [[UIActivityIndicatorView alloc]init];
@@ -94,18 +99,18 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     _playStatusBlock =status;
 }
 #pragma mark play
-- (void)playWithUrl:(NSURL *)url withView:(UIView *)showView andNeedCache:(BOOL)needCache {
+- (void)playWithUrl:(NSURL *)url withView:(UIView *)showView andConfig:(void(^)(KingCacheVideoPlayerConfig *))config {
     
+    if (config) {
+        config(self.config);
+    }
     NSURLComponents *components = [[NSURLComponents alloc] initWithURL:url resolvingAgainstBaseURL:NO];
     components.scheme = @"streaming";
     NSURL *playUrl = [components URL];
     NSString *md5File = [NSString stringWithFormat:@"%@.mp4", [[playUrl absoluteString] stringToMD5]];
-    
-    //这里自己写需要保存数据的路径
-    NSString *document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
-    NSString *cachePath =  [document stringByAppendingPathComponent:md5File];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:cachePath] && needCache) {
+    NSString *cachePath =  [self.config.cachePath stringByAppendingPathComponent:md5File];
+
+    if ([[NSFileManager defaultManager] fileExistsAtPath:cachePath] && self.config.needCache) {
         NSURL *localURL = [NSURL fileURLWithPath:cachePath];
         [self playWithVideoUrl:localURL showView:showView];
     } else {
@@ -124,7 +129,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     
     _showView = showView;
     _showViewRect = showView.frame;
-    _showView.backgroundColor = [UIColor blackColor];
+    _showView.backgroundColor = self.config.playBGColor;
     
     NSString *str = [url absoluteString];
     //如果是ios  < 7 或者是本地资源，直接播放
@@ -190,6 +195,8 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     self.actIndicator.frame = CGRectMake((CGRectGetWidth(self.playerView.frame) - 44) / 2, (CGRectGetHeight(self.playerView.frame) - 44) / 2, 44, 44);
     [self.actIndicator removeFromSuperview];
     [_showView addSubview:self.actIndicator];
+    self.actIndicator.activityIndicatorViewStyle = self.config.indicatorViewStyle;
+    self.actIndicator.hidden = self.config.hiddenIndicatorView;
 }
 #pragma mark playControl
 - (void)seekToTime:(CGFloat)seconds {
@@ -215,7 +222,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 
 - (void)appDidEnterBackground
 {
-    if (self.stopInBackground) {
+    if (self.config.stopInBackground) {
         [self pause];
         self.state = KingPlayerStatePause;
         self.isPauseByUser = NO;
@@ -233,8 +240,10 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     //    [self stop];
     
     //如果当前播放次数小于重复播放次数，继续重新播放
-    if (self.playCount < self.playRepatCount) {
-        self.playCount++;
+    if (self.statusModel.playCount < self.config.playRepatCount) {
+        NSInteger count =self.statusModel.playCount;
+        count++;
+        self.statusModel.KingPlayerPlayCount(count);
         [self seekToTime:0];
         self.statusModel.KingPlayerCurrent(0);
     } else {
@@ -381,6 +390,9 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
         [self.actIndicator stopAnimating];
         self.actIndicator.hidden = YES;
     }
+    if (state == KingPlayerStateFinish) {
+        [self releasePlayer];
+    }
     
     if (_state == state) {
         return;
@@ -485,6 +497,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
         self.resouerLoader.task = nil;
         self.resouerLoader = nil;
     }
+    self.statusModel.KingPlayerPlayCount(1);
 }
 
 - (void)dealloc
