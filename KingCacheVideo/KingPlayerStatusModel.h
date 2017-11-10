@@ -14,6 +14,8 @@ typedef NS_ENUM(NSInteger, KingPlayerState) {
     KingPlayerStatePause,            //暂停播放
     KingPlayerStateFinish,           //播放完成
     KingPlayerStateFinishLoad,       //加载完成
+    KingPlayerStateLoadError,        //加载错误
+
 };
 typedef NS_ENUM(NSInteger, KingPlayerErrorState) {
     KingPlayerErrorStateIsTimeOut = -1001,    //请求超时
@@ -92,5 +94,7 @@ typedef NS_ENUM(NSInteger, KingPlayerErrorState) {
 @property(nonatomic,copy,readonly)KingPlayerStatusModel *(^KingPlayerPlayLoadingFinish)(BOOL isloadFinish);
 
 @property(nonatomic,copy,readonly)KingPlayerStatusModel *(^KingPlayerPlayIsLocalVideo)(BOOL isLocalVideo);
+
+@property(nonatomic,copy)void(^KingPlayerStateChange)(KingPlayerStatusModel *model);
 
 @end

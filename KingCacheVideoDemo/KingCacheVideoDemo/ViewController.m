@@ -24,9 +24,8 @@
         config.KingVideoPlayerConfigPlayRepatCount(3);
     }];
     [[KingCacheVideoPlayer sharedInstance]playStatusObserver:^(KingPlayerStatusModel *model){
-        NSLog(@"%f",model.current);
-        NSLog(@"%ld",(long)model.playCount);
-
+        NSLog(@"%@",model.currentTime);
+        NSLog(@"%ld",(long)model.state);
     }];
     NSLog(@"%f", [[KingCacheVideoPlayer sharedInstance] allVideoCacheSize:nil]);
     

@@ -11,7 +11,7 @@
 +(instancetype)defaultConfig
 {
     KingCacheVideoPlayerConfig *config= [[KingCacheVideoPlayerConfig alloc]init];
-    config.KingVideoPlayerConfigINBGStop(YES).KingVideoPlayerConfigPlayRepatCount(1).KingVideoPlayerConfigPlayBGColor([UIColor blackColor]).KingVideoPlayerConfigHiddenIndicatorView(NO).KingVideoPlayerConfigIndicatorViewStyle(UIActivityIndicatorViewStyleWhite).KingCacheVideoPlayerNeedCache(YES).KingVideoPlayerConfigFeedbackTime(CMTimeMake(1, 3));
+    config.KingVideoPlayerConfigINBGStop(YES).KingVideoPlayerConfigPlayRepatCount(1).KingVideoPlayerConfigPlayBGColor([UIColor blackColor]).KingVideoPlayerConfigHiddenIndicatorView(NO).KingVideoPlayerConfigIndicatorViewStyle(UIActivityIndicatorViewStyleWhite).KingCacheVideoPlayerNeedCache(YES).KingVideoPlayerConfigFeedbackTime(CMTimeMake(1, 2));
     
     NSString *document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
     

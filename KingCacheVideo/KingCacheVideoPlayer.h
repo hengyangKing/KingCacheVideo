@@ -56,13 +56,4 @@ FOUNDATION_EXPORT NSString *const kKingPlayerLoadProgressChangedNotification;
  @param status 状态模型
  */
 -(void)playStatusObserver:(void(^)(KingPlayerStatusModel *statusModel))status;
-
-/**
- 播放完成回调block
-
- @param finishBlock 完成回调
- */
--(void)playFinishBlock:(void(^)())finishBlock;
-
-
 @end

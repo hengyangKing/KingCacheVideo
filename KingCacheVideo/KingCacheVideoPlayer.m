@@ -50,12 +50,6 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
  设置状态block
  */
 @property (nonatomic,copy)void (^playConfig)(KingCacheVideoPlayerConfig *config);
-
-/**
- 播放下一个block
- */
-@property (nonatomic, copy) void(^playNextBlock)(void);
-
 @end
 @implementation KingCacheVideoPlayer
 + (instancetype)sharedInstance {
@@ -89,6 +83,12 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 {
     if (!_statusModel) {
         _statusModel = [KingPlayerStatusModel defaultModel];
+        __weak __typeof(self)weakSelf = self;
+        [_statusModel setKingPlayerStateChange:^(KingPlayerStatusModel *model) {
+            if (weakSelf.playStatusBlock) {
+                weakSelf.playStatusBlock(model);
+            }
+        }];
     }
     return _statusModel;
 }
@@ -108,10 +108,6 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 -(void)playStatusObserver:(void (^)(KingPlayerStatusModel *))status
 {
     self.playStatusBlock =status;
-}
--(void)playFinishBlock:(void (^)())finishBlock
-{
-    self.playNextBlock = finishBlock;
 }
 #pragma mark play
 - (void)playWithUrl:(NSURL *)url withView:(UIView *)showView andConfig:(void(^)(KingCacheVideoPlayerConfig *))config {
@@ -150,12 +146,12 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     //如果是ios  < 7 或者是本地资源，直接播放
     if ([str hasPrefix:@"https"] || [str hasPrefix:@"http"]) {
         
-        self.resouerLoader          = [[KingLoaderURLConnection alloc] init];
+        self.resouerLoader = [[KingLoaderURLConnection alloc] init];
         self.resouerLoader.delegate = self;
-        NSURL *playUrl              = [self.resouerLoader getSchemeVideoURL:url];
-        self.videoURLAsset          = [AVURLAsset URLAssetWithURL:playUrl options:nil];
+        NSURL *playUrl = [self.resouerLoader getSchemeVideoURL:url];
+        self.videoURLAsset = [AVURLAsset URLAssetWithURL:playUrl options:nil];
         [_videoURLAsset.resourceLoader setDelegate:self.resouerLoader queue:dispatch_get_main_queue()];
-        self.currentPlayerItem      = [AVPlayerItem playerItemWithAsset:_videoURLAsset];
+        self.currentPlayerItem = [AVPlayerItem playerItemWithAsset:_videoURLAsset];
         
         self.statusModel.KingPlayerPlayIsLocalVideo(NO);
         self.statusModel.KingPlayerPlayLoadingFinish(NO);
@@ -255,8 +251,6 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 }
 - (void)playerItemDidPlayToEnd:(NSNotification *)notification
 {
-    //    [self stop];
-    
     //如果当前播放次数小于重复播放次数，继续重新播放
     if (self.statusModel.playCount < self.config.playRepatCount) {
         NSInteger count =self.statusModel.playCount;
@@ -265,13 +259,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
         [self seekToTime:0];
         self.statusModel.KingPlayerCurrent(0);
     } else {
-        //如果有播放下一个的需求就播放下一个
-        if (self.playNextBlock) {
-            self.playNextBlock();
-        } else {
-            //重新播放
-            self.state = KingPlayerStateFinish;
-        }
+        self.state = KingPlayerStateFinish;
     }
 }
 //在监听播放器状态中处理比较准确
@@ -336,9 +324,6 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
                 strongSelf.statusModel.KingPlayerDuration(strongSelf.statusModel.current);
             }
             [[NSNotificationCenter defaultCenter] postNotificationName:kKingPlayerProgressChangedNotification object:nil];
-        }
-        if (weakSelf.playStatusBlock) {
-            weakSelf.playStatusBlock(weakSelf.statusModel);
         }
     }];
 }
@@ -408,17 +393,16 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
         [self.actIndicator stopAnimating];
         self.actIndicator.hidden = YES;
     }
-    if (state == KingPlayerStateFinish) {
-        [self releasePlayer];
-    }
-    
     if (_state == state) {
         return;
     }
-    
     _state = state;
     [[NSNotificationCenter defaultCenter] postNotificationName:kKingPlayerStateChangedNotification object:nil];
     self.statusModel.KingPlayerPlayState(_state);
+    
+    if (state == KingPlayerStateFinish) {
+        [self releasePlayer];
+    }
 }
 #pragma mark  - playcontrol
 /**
@@ -474,10 +458,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 - (void)didFailLoadingWithTask:(KingVideoRequestTask *)task withError:(NSInteger )errorCode
 {
     self.statusModel.KingPlayerErrorState(errorCode);
-    if (self.playStatusBlock) {
-        self.playStatusBlock(self.statusModel);
-    }
-    
+    self.state = KingPlayerStateLoadError;
 }
 - (void)releasePlayer {
     if (!self.currentPlayerItem) {

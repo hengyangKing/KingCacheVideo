@@ -71,6 +71,9 @@
 {
     return ^(NSString *time){
         self.currentTime = time;
+        if (self.KingPlayerStateChange) {
+            self.KingPlayerStateChange(self);
+        }
         return self;
     };
 }
@@ -78,6 +81,9 @@
 {
     return ^(NSString *time){
         self.totolTime = time;
+        if (self.KingPlayerStateChange) {
+            self.KingPlayerStateChange(self);
+        }
         return self;
     };
 }
@@ -85,12 +91,18 @@
 {
     return ^(CGFloat time){
         self.current = time;
+        if (self.KingPlayerStateChange) {
+            self.KingPlayerStateChange(self);
+        }
         return self;
     };
 }
 -(KingPlayerStatusModel *(^)(CGFloat))KingPlayerDuration{
     return ^(CGFloat time){
         self.duration = time;
+        if (self.KingPlayerStateChange) {
+            self.KingPlayerStateChange(self);
+        }
         return self;
     };
 }
@@ -98,13 +110,21 @@
 {
     return ^(CGFloat progress){
         self.loadedProgress = progress;
+        if (self.KingPlayerStateChange) {
+            self.KingPlayerStateChange(self);
+        }
         return self;
     };
 }
 -(KingPlayerStatusModel *(^)(KingPlayerState))KingPlayerPlayState
 {
     return ^(KingPlayerState state){
-        self.state = state;
+        if (self.state != state) {
+            self.state = state;
+            if (self.KingPlayerStateChange) {
+                self.KingPlayerStateChange(self);
+            }
+        }
         return self;
     };
 }
@@ -136,6 +156,9 @@
 {
     return ^(NSInteger count){
         self.playCount = count;
+        if (self.KingPlayerStateChange) {
+            self.KingPlayerStateChange(self);
+        }
         return self;
     };
 }
@@ -143,6 +166,9 @@
 {
     return ^(BOOL isloadFinish){
         self.isFinishLoad = isloadFinish;
+        if (self.KingPlayerStateChange) {
+            self.KingPlayerStateChange(self);
+        }
         return self;
     };
 }
@@ -150,6 +176,9 @@
 {
     return ^(BOOL isLocalVideo){
         self.isLocalVideo = isLocalVideo;
+        if (self.KingPlayerStateChange) {
+            self.KingPlayerStateChange(self);
+        }
         return self;
     };
 }
