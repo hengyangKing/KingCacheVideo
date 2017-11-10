@@ -40,15 +40,24 @@ FOUNDATION_EXPORT NSString *const kKingPlayerLoadProgressChangedNotification;
 - (void)resume;
 
 /**
- *  暂停或继续播放
+ *  暂停
  */
-- (void)pauseOrPlay;
+- (void)pause;
 
 /**
  *  停止播放
  */
 - (void)stop;
 
+/**
+ * 重新播放
+ */
+- (void)replay;
+
+/**
+ 播放或暂停
+ */
+- (void)pauseOrPlay;
 
 /**
  播放状态实时回调

@@ -212,28 +212,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     self.actIndicator.activityIndicatorViewStyle = self.config.indicatorViewStyle;
     self.actIndicator.hidden = self.config.hiddenIndicatorView;
 }
-#pragma mark playControl
-- (void)seekToTime:(CGFloat)seconds {
-    if (self.state == KingPlayerStateStopped) {
-        return;
-    }
-    
-    seconds = MAX(0, seconds);
-    seconds = MIN(seconds, self.statusModel.duration);
-    
-    [self.player pause];
-    [self.player seekToTime:CMTimeMakeWithSeconds(seconds, NSEC_PER_SEC) completionHandler:^(BOOL finished) {
-        self.isPauseByUser = NO;
-        [self.player play];
-        if (!self.currentPlayerItem.isPlaybackLikelyToKeepUp) {
-            self.state = KingPlayerStateBuffering;
-            self.actIndicator.hidden = NO;
-            [self.actIndicator startAnimating];
-        }
-    }];
-}
 #pragma mark - observer
-
 - (void)appDidEnterBackground
 {
     if (self.config.stopInBackground) {
@@ -404,9 +383,33 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
         [self releasePlayer];
     }
 }
-#pragma mark  - playcontrol
+#pragma mark  - playControl
 /**
- *  重新播放
+ 指定位置播放
+
+ @param seconds 时间
+ */
+- (void)seekToTime:(CGFloat)seconds {
+    if (self.state == KingPlayerStateStopped) {
+        return;
+    }
+    
+    seconds = MAX(0, seconds);
+    seconds = MIN(seconds, self.statusModel.duration);
+    
+    [self.player pause];
+    [self.player seekToTime:CMTimeMakeWithSeconds(seconds, NSEC_PER_SEC) completionHandler:^(BOOL finished) {
+        self.isPauseByUser = NO;
+        [self.player play];
+        if (!self.currentPlayerItem.isPlaybackLikelyToKeepUp) {
+            self.state = KingPlayerStateBuffering;
+            self.actIndicator.hidden = NO;
+            [self.actIndicator startAnimating];
+        }
+    }];
+}
+/**
+ *  继续播放
  */
 - (void)resume
 {
@@ -417,7 +420,14 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     [self.player play];
 }
 /**
- *  暂停播放
+ 重播
+ */
+-(void)replay{
+    [self seekToTime:0.0];
+    self.state = KingPlayerStatePlaying;
+}
+/**
+ *  暂停或继续播放
  */
 - (void)pauseOrPlay
 {
@@ -427,11 +437,9 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     if (self.state == KingPlayerStatePlaying) {
         [self pause];
     } else if (self.state == KingPlayerStatePause) {
-        [self.player play];
-        self.state = KingPlayerStatePlaying;
+        [self resume];
     } else if (self.state == KingPlayerStateFinish) {
-        [self seekToTime:0.0];
-        self.state = KingPlayerStatePlaying;
+        [self replay];
     }
 }
 /**
