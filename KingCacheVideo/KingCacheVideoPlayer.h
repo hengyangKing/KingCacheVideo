@@ -40,9 +40,9 @@ FOUNDATION_EXPORT NSString *const kKingPlayerLoadProgressChangedNotification;
 - (void)resume;
 
 /**
- *  暂停播放
+ *  暂停或继续播放
  */
-- (void)pause;
+- (void)pauseOrPlay;
 
 /**
  *  停止播放

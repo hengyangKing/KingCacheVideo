@@ -419,6 +419,24 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 /**
  *  暂停播放
  */
+- (void)pauseOrPlay
+{
+    if (!self.currentPlayerItem) {
+        return;
+    }
+    if (self.state == KingPlayerStatePlaying) {
+        [self pause];
+    } else if (self.state == KingPlayerStatePause) {
+        [self.player play];
+        self.state = KingPlayerStatePlaying;
+    } else if (self.state == KingPlayerStateFinish) {
+        [self seekToTime:0.0];
+        self.state = KingPlayerStatePlaying;
+    }
+}
+/**
+ *  暂停播放
+ */
 - (void)pause
 {
     if (!self.currentPlayerItem) {
