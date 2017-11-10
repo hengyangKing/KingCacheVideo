@@ -21,11 +21,13 @@
     UIView *videoView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width * 0.5625)];
     [self.view addSubview:videoView];
     [[KingCacheVideoPlayer sharedInstance]playWithUrl:[NSURL URLWithString:@"http://cdn.xinchao.mobi/imgs/201711/5a02be4dbd7a5.mp4"] withView:videoView andConfig:^void (KingCacheVideoPlayerConfig *config) {
-        config.KingVideoPlayerConfigPlayRepatCount(3);
+        config.KingVideoPlayerConfigPlayRepatCount(1);
     }];
     [[KingCacheVideoPlayer sharedInstance]playStatusObserver:^(KingPlayerStatusModel *model){
         NSLog(@"%@",model.currentTime);
-        NSLog(@"%ld",(long)model.state);
+        NSLog(@"%ld",(long)model.totolTime);
+        NSLog(@"%ld",(long)model.errorState);
+
     }];
     NSLog(@"%f", [[KingCacheVideoPlayer sharedInstance] allVideoCacheSize:nil]);
     

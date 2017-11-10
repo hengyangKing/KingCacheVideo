@@ -208,9 +208,11 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     
     self.actIndicator.frame = CGRectMake((CGRectGetWidth(self.playerView.frame) - 44) / 2, (CGRectGetHeight(self.playerView.frame) - 44) / 2, 44, 44);
     [self.actIndicator removeFromSuperview];
-    [_showView insertSubview:self.actIndicator aboveSubview:self.playerView];
+    if (!self.config.hiddenIndicatorView) {
+        [_showView insertSubview:self.actIndicator aboveSubview:self.playerView];
+    }
     self.actIndicator.activityIndicatorViewStyle = self.config.indicatorViewStyle;
-    self.actIndicator.hidden = self.config.hiddenIndicatorView;
+    self.actIndicator.hidden = NO;
 }
 #pragma mark - observer
 - (void)appDidEnterBackground
@@ -337,6 +339,8 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     
     // 需要先暂停一小会之后再播放，否则网络状况不好的时候时间在走，声音播放不出来
     [self.player pause];
+    self.actIndicator.hidden = NO;
+    [self.actIndicator startAnimating];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         // 如果此时用户已经暂停了，则不再需要开启播放了
@@ -344,7 +348,8 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
             isBuffering = NO;
             return;
         }
-        
+        self.actIndicator.hidden = YES;
+        [self.actIndicator stopAnimating];
         [self.player play];
         // 如果执行了play还是没有播放则说明还没有缓存好，则再次缓存一段时间
         isBuffering = NO;
@@ -418,6 +423,9 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     }
     self.isPauseByUser = NO;
     [self.player play];
+    self.actIndicator.hidden = YES;
+    [self.actIndicator stopAnimating];
+    
 }
 /**
  重播
@@ -425,6 +433,8 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 -(void)replay{
     [self seekToTime:0.0];
     self.state = KingPlayerStatePlaying;
+    self.actIndicator.hidden = YES;
+    [self.actIndicator stopAnimating];
 }
 /**
  *  暂停或继续播放
@@ -453,6 +463,8 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     self.isPauseByUser = YES;
     self.state = KingPlayerStatePause;
     [self.player pause];
+    self.actIndicator.hidden = YES;
+    [self.actIndicator stopAnimating];
 }
 /**
  *  停止播放
