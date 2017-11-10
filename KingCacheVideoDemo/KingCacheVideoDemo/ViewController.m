@@ -25,13 +25,12 @@
     }];
     [[KingCacheVideoPlayer sharedInstance]playStatusObserver:^(KingPlayerStatusModel *model){
         NSLog(@"%@",model.currentTime);
-        NSLog(@"%ld",(long)model.totolTime);
-        NSLog(@"%ld",(long)model.errorState);
-
+        NSLog(@"%@",model.totolTime);
+        if (model.state == KingPlayerStateFinish) {
+            [[KingCacheVideoPlayer sharedInstance]replay];
+        }
     }];
     NSLog(@"%f", [[KingCacheVideoPlayer sharedInstance] allVideoCacheSize:nil]);
-    
-    
 }
 
 

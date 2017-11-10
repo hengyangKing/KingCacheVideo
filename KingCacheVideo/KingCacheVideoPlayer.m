@@ -9,6 +9,7 @@
 #import "KingLoaderURLConnection.h"
 #import "KingPlayerView.h"
 #import "NSString+KingStrTools.h"
+#import "KingActivityIndicatorView.h"
 #define LeastMoveDistance 15
 #define TotalScreenTime 90
 
@@ -37,7 +38,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 @property (nonatomic, assign) CGRect         showViewRect;            //视频展示ViewRect
 @property (nonatomic, strong) KingPlayerView  *playerView;
 
-@property (nonatomic, strong) UIActivityIndicatorView *actIndicator;  //加载视频时的旋转菊花
+@property (nonatomic, strong) KingActivityIndicatorView *actIndicator;  //加载视频时的旋转菊花
 
 @property (nonatomic, strong) KingLoaderURLConnection *resouerLoader;
 
@@ -99,9 +100,9 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     }
     return _config;
 }
-- (UIActivityIndicatorView *)actIndicator {
+- (KingActivityIndicatorView *)actIndicator {
     if (!_actIndicator) {
-        _actIndicator = [[UIActivityIndicatorView alloc]init];
+        _actIndicator = [[KingActivityIndicatorView alloc]init];
     }
     return _actIndicator;
 }
@@ -241,6 +242,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
         self.statusModel.KingPlayerCurrent(0);
     } else {
         self.state = KingPlayerStateFinish;
+        self.statusModel.KingPlayerPlayCount(1);
     }
 }
 //在监听播放器状态中处理比较准确
@@ -267,13 +269,12 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
         
     } else if ([KingVideoPlayerItemPlaybackBufferEmptyKeyPath isEqualToString:keyPath]) { //监听播放器在缓冲数据的状态
         [self.actIndicator startAnimating];
-        self.actIndicator.hidden = NO;
         if (playerItem.isPlaybackBufferEmpty) {
             self.state = KingPlayerStateBuffering;
             [self bufferingSomeSecond];
         }
     } else if ([KingVideoPlayerItemPlaybackLikelyToKeepUpKeyPath isEqualToString:keyPath]) {
-        NSLog(@"KingVideoPlayerItemPlaybackLikelyToKeepUpKeyPath");
+        [self.actIndicator stopAnimating];
     } else if ([KingVideoPlayerItemPresentationSizeKeyPath isEqualToString:keyPath]) {
         CGSize size = self.currentPlayerItem.presentationSize;
         static float staticHeight = 0;
@@ -339,8 +340,6 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     
     // 需要先暂停一小会之后再播放，否则网络状况不好的时候时间在走，声音播放不出来
     [self.player pause];
-    self.actIndicator.hidden = NO;
-    [self.actIndicator startAnimating];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         // 如果此时用户已经暂停了，则不再需要开启播放了
@@ -373,20 +372,17 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 - (void)setState:(KingPlayerState)state
 {
     if (state != KingPlayerStateBuffering) {
-        //        [[XCHudHelper sharedInstance] hideHud];
         [self.actIndicator stopAnimating];
-        self.actIndicator.hidden = YES;
     }
     if (_state == state) {
         return;
     }
+    if (state == KingPlayerStatePlaying) {
+        [self.actIndicator stopAnimating];
+    }
     _state = state;
     [[NSNotificationCenter defaultCenter] postNotificationName:kKingPlayerStateChangedNotification object:nil];
     self.statusModel.KingPlayerPlayState(_state);
-    
-    if (state == KingPlayerStateFinish) {
-        [self releasePlayer];
-    }
 }
 #pragma mark  - playControl
 /**
@@ -406,9 +402,9 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     [self.player seekToTime:CMTimeMakeWithSeconds(seconds, NSEC_PER_SEC) completionHandler:^(BOOL finished) {
         self.isPauseByUser = NO;
         [self.player play];
+        
         if (!self.currentPlayerItem.isPlaybackLikelyToKeepUp) {
             self.state = KingPlayerStateBuffering;
-            self.actIndicator.hidden = NO;
             [self.actIndicator startAnimating];
         }
     }];
@@ -423,9 +419,6 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     }
     self.isPauseByUser = NO;
     [self.player play];
-    self.actIndicator.hidden = YES;
-    [self.actIndicator stopAnimating];
-    
 }
 /**
  重播
@@ -433,8 +426,6 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 -(void)replay{
     [self seekToTime:0.0];
     self.state = KingPlayerStatePlaying;
-    self.actIndicator.hidden = YES;
-    [self.actIndicator stopAnimating];
 }
 /**
  *  暂停或继续播放
@@ -463,8 +454,6 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     self.isPauseByUser = YES;
     self.state = KingPlayerStatePause;
     [self.player pause];
-    self.actIndicator.hidden = YES;
-    [self.actIndicator stopAnimating];
 }
 /**
  *  停止播放
