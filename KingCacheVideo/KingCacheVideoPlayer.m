@@ -112,9 +112,9 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 }
 #pragma mark play
 - (void)playWithUrl:(NSURL *)url withView:(UIView *)showView andConfig:(void(^)(KingCacheVideoPlayerConfig *))config {
-    
+    __weak typeof(self) weakSelf = self;
     if (config) {
-        config(self.config);
+        config(weakSelf.config);
     }
     NSURLComponents *components = [[NSURLComponents alloc] initWithURL:url resolvingAgainstBaseURL:NO];
     components.scheme = @"streaming";
@@ -340,20 +340,21 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     
     // 需要先暂停一小会之后再播放，否则网络状况不好的时候时间在走，声音播放不出来
     [self.player pause];
+    __weak typeof(self) weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         // 如果此时用户已经暂停了，则不再需要开启播放了
-        if (self.isPauseByUser) {
+        if (weakSelf.isPauseByUser) {
             isBuffering = NO;
             return;
         }
-        self.actIndicator.hidden = YES;
-        [self.actIndicator stopAnimating];
-        [self.player play];
+        weakSelf.actIndicator.hidden = YES;
+        [weakSelf.actIndicator stopAnimating];
+        [weakSelf.player play];
         // 如果执行了play还是没有播放则说明还没有缓存好，则再次缓存一段时间
         isBuffering = NO;
-        if (!self.currentPlayerItem.isPlaybackLikelyToKeepUp) {
-            [self bufferingSomeSecond];
+        if (!weakSelf.currentPlayerItem.isPlaybackLikelyToKeepUp) {
+            [weakSelf bufferingSomeSecond];
         }
     });
 }
@@ -397,15 +398,16 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     
     seconds = MAX(0, seconds);
     seconds = MIN(seconds, self.statusModel.duration);
-    
-    [self.player pause];
+
+//    [self.player pause];
+    __weak typeof(self) weakSelf = self;
     [self.player seekToTime:CMTimeMakeWithSeconds(seconds, NSEC_PER_SEC) completionHandler:^(BOOL finished) {
-        self.isPauseByUser = NO;
-        [self.player play];
+        weakSelf.isPauseByUser = NO;
+        [weakSelf.player play];
         
-        if (!self.currentPlayerItem.isPlaybackLikelyToKeepUp) {
-            self.state = KingPlayerStateBuffering;
-            [self.actIndicator startAnimating];
+        if (!weakSelf.currentPlayerItem.isPlaybackLikelyToKeepUp) {
+            weakSelf.state = KingPlayerStateBuffering;
+            [weakSelf.actIndicator startAnimating];
         }
     }];
 }
