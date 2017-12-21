@@ -151,7 +151,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
         self.resouerLoader.delegate = self;
         NSURL *playUrl = [self.resouerLoader getSchemeVideoURL:url];
         self.videoURLAsset = [AVURLAsset URLAssetWithURL:playUrl options:nil];
-        [_videoURLAsset.resourceLoader setDelegate:self.resouerLoader queue:dispatch_get_main_queue()];
+        [self.videoURLAsset.resourceLoader setDelegate:self.resouerLoader queue:dispatch_get_main_queue()];
         self.currentPlayerItem = [AVPlayerItem playerItemWithAsset:_videoURLAsset];
         
         self.statusModel.KingPlayerPlayIsLocalVideo(NO);
@@ -290,7 +290,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     [self.player play];
     
     __weak __typeof(self)weakSelf = self;
-    self.playbackTimeObserver = [self.player addPeriodicTimeObserverForInterval:self.config.feedbackTime queue:NULL usingBlock:^(CMTime time) {
+    self.playbackTimeObserver = [self.player addPeriodicTimeObserverForInterval:self.config.feedbackTime queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
         
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         CGFloat current = playerItem.currentTime.value / playerItem.currentTime.timescale;
