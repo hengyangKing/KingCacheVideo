@@ -8,99 +8,71 @@
 #import "KingCacheVideoPlayerConfig.h"
 #import "NSString+KingStrTools.h"
 @implementation KingCacheVideoPlayerConfig
-+(instancetype)defaultConfig
-{
++(instancetype)defaultConfig {
     KingCacheVideoPlayerConfig *config= [[KingCacheVideoPlayerConfig alloc]init];
-    config.KingVideoPlayerConfigINBGStop(YES).KingVideoPlayerConfigPlayRepatCount(1).KingVideoPlayerConfigPlayBGColor([UIColor blackColor]).KingVideoPlayerConfigHiddenIndicatorView(NO).KingVideoPlayerConfigIndicatorViewStyle(UIActivityIndicatorViewStyleWhite).KingCacheVideoPlayerNeedCache(YES).KingVideoPlayerConfigFeedbackTime(CMTimeMake(1, 2));
-    
-    NSString *document = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
-    
-    config.KingVideoPlayerConfigCachePath(document);
+    config.KingVideoPlayerConfigINBGStop(YES).KingVideoPlayerConfigPlayRepatCount(1).KingVideoPlayerConfigPlayBGColor([UIColor blackColor]).KingVideoPlayerIndicatorStyle(hidden).KingCacheVideoPlayerNeedCache(YES).KingVideoPlayerConfigFeedbackTime(CMTimeMake(1, 2)).KingVideoPlayerConfigCachePath(NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject);
     return config;
-    
 }
 #pragma mark set
--(void)setNeedCache:(BOOL)needCache
-{
+-(void)setNeedCache:(BOOL)needCache {
     _needCache = needCache;
 }
--(void)setStopInBackground:(BOOL)stopInBackground
-{
+-(void)setStopInBackground:(BOOL)stopInBackground {
     _stopInBackground=stopInBackground;
 }
--(void)setPlayRepatCount:(NSInteger)playRepatCount
-{
+-(void)setPlayRepatCount:(NSInteger)playRepatCount {
     _playRepatCount=playRepatCount;
 }
--(void)setPlayBGColor:(UIColor *)playBGColor
-{
+-(void)setPlayBGColor:(UIColor *)playBGColor {
     _playBGColor=playBGColor;
 }
--(void)setHiddenIndicatorView:(BOOL)hiddenIndicatorView
-{
-    _hiddenIndicatorView=hiddenIndicatorView;
+-(void)setIndicatorStyle:(VideoPlayerIndicatorStyle)indicatorStyle {
+    _indicatorStyle = indicatorStyle;
 }
--(void)setIndicatorViewStyle:(UIActivityIndicatorViewStyle)indicatorViewStyle
-{
-    _indicatorViewStyle=indicatorViewStyle;
-}
--(void)setCachePath:(NSString *)cachePath
-{
+-(void)setCachePath:(NSString *)cachePath {
     _cachePath=cachePath;
 }
--(void)setFeedbackTime:(CMTime)feedbackTime
-{
+-(void)setFeedbackTime:(CMTime)feedbackTime {
     _feedbackTime = feedbackTime;
 }
 #pragma get
--(KingCacheVideoPlayerConfig *(^)(BOOL))KingVideoPlayerConfigINBGStop
-{
+-(KingCacheVideoPlayerConfig *(^)(BOOL))KingVideoPlayerConfigINBGStop {
     return ^(BOOL stopInBackground){
         self.stopInBackground = stopInBackground;
         return self;
     };
 }
--(KingCacheVideoPlayerConfig *(^)(NSInteger))KingVideoPlayerConfigPlayRepatCount
-{
+-(KingCacheVideoPlayerConfig *(^)(NSInteger))KingVideoPlayerConfigPlayRepatCount {
     return ^(NSInteger repatCount){
         self.playRepatCount = repatCount;
         return self;
     };
 }
--(KingCacheVideoPlayerConfig *(^)(UIColor *))KingVideoPlayerConfigPlayBGColor{
+-(KingCacheVideoPlayerConfig *(^)(UIColor *))KingVideoPlayerConfigPlayBGColor {
     return ^(UIColor *color){
         self.playBGColor = color;
         return self;
     };
 }
--(KingCacheVideoPlayerConfig *(^)(BOOL))KingVideoPlayerConfigHiddenIndicatorView{
-    return ^(BOOL hidden){
-        self.hiddenIndicatorView = hidden;
+-(KingCacheVideoPlayerConfig *(^)(VideoPlayerIndicatorStyle))KingVideoPlayerIndicatorStyle {
+    return ^(VideoPlayerIndicatorStyle style){
+        self.indicatorStyle = style;
         return self;
     };
 }
--(KingCacheVideoPlayerConfig *(^)(UIActivityIndicatorViewStyle))KingVideoPlayerConfigIndicatorViewStyle{
-    
-    return ^(UIActivityIndicatorViewStyle style){
-        self.indicatorViewStyle = style;
-        return self;
-    };
-}
--(KingCacheVideoPlayerConfig *(^)(NSString *))KingVideoPlayerConfigCachePath{
+-(KingCacheVideoPlayerConfig *(^)(NSString *))KingVideoPlayerConfigCachePath {
     return ^(NSString *path){
         self.cachePath =path;
         return self;
     };
 }
--(KingCacheVideoPlayerConfig *(^)(BOOL))KingCacheVideoPlayerNeedCache
-{
+-(KingCacheVideoPlayerConfig *(^)(BOOL))KingCacheVideoPlayerNeedCache {
     return ^(BOOL needCache){
         self.needCache = needCache;
         return self;
     };
 }
--(KingCacheVideoPlayerConfig *(^)(CMTime))KingVideoPlayerConfigFeedbackTime
-{
+-(KingCacheVideoPlayerConfig *(^)(CMTime))KingVideoPlayerConfigFeedbackTime {
     return ^(CMTime time){
         self.feedbackTime = time;
         return self;

@@ -7,6 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreMedia/CMTime.h>
+typedef NS_ENUM(NSUInteger, VideoPlayerIndicatorStyle) {
+    hidden,
+    white,
+    gray,
+};
 @interface KingCacheVideoPlayerConfig : NSObject
 +(instancetype)defaultConfig;
 /**
@@ -26,17 +31,13 @@
 /**
  播放背景色
  */
-@property (nonatomic,strong,readonly)UIColor *playBGColor;
-
-/**
- 隐藏菊花
- */
-@property (nonatomic,assign,readonly)BOOL hiddenIndicatorView;
+@property (nonatomic, strong,readonly)UIColor *playBGColor;
 
 /**
  菊花风格
  */
-@property (nonatomic,assign,readonly)UIActivityIndicatorViewStyle indicatorViewStyle;
+@property (nonatomic, assign,readonly)VideoPlayerIndicatorStyle indicatorStyle;
+
 /**
  存储地址
  */
@@ -54,9 +55,7 @@
 
 @property(nonatomic,copy,readonly)KingCacheVideoPlayerConfig * (^KingVideoPlayerConfigPlayBGColor)(UIColor *color);
 
-@property(nonatomic,copy,readonly)KingCacheVideoPlayerConfig * (^KingVideoPlayerConfigHiddenIndicatorView)(BOOL hidden);
-
-@property(nonatomic,copy,readonly)KingCacheVideoPlayerConfig * (^KingVideoPlayerConfigIndicatorViewStyle)(UIActivityIndicatorViewStyle indicatorViewStyle);
+@property(nonatomic,copy,readonly)KingCacheVideoPlayerConfig *(^KingVideoPlayerIndicatorStyle)(VideoPlayerIndicatorStyle style);
 
 @property(nonatomic,copy,readonly)KingCacheVideoPlayerConfig *(^KingVideoPlayerConfigCachePath)(NSString *filePath);
 

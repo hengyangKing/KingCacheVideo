@@ -10,6 +10,7 @@
 #import "KingPlayerView.h"
 #import "NSString+KingStrTools.h"
 #import "KingActivityIndicatorView.h"
+#import "UIView+Constraint.h"
 #define LeastMoveDistance 15
 #define TotalScreenTime 90
 
@@ -35,7 +36,6 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 @property (nonatomic, strong) NSObject       *playbackTimeObserver;
 @property (nonatomic, assign) BOOL           isPauseByUser;           //是否被用户暂停
 @property (nonatomic, weak  ) UIView         *showView;
-@property (nonatomic, assign) CGRect         showViewRect;            //视频展示ViewRect
 @property (nonatomic, strong) KingPlayerView  *playerView;
 
 @property (nonatomic, strong) KingActivityIndicatorView *actIndicator;  //加载视频时的旋转菊花
@@ -54,24 +54,20 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 @end
 @implementation KingCacheVideoPlayer
 + (instancetype)sharedInstance {
-    
     static dispatch_once_t onceToken;
-    static KingCacheVideoPlayer *instance;
-    
+    static KingCacheVideoPlayer *_instance;
     dispatch_once(&onceToken, ^{
-        instance = [[self alloc]init];
+        _instance = [[self alloc]init];
     });
-    return instance;
+    return _instance;
 }
-
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         _isPauseByUser = YES;
         _loadedProgress = 0;
         _state = KingPlayerStateStopped;
-        }
+    }
     return self;
 }
 - (KingPlayerView *)playerView {
@@ -80,8 +76,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     }
     return _playerView;
 }
--(KingPlayerStatusModel *)statusModel
-{
+-(KingPlayerStatusModel *)statusModel {
     if (!_statusModel) {
         _statusModel = [KingPlayerStatusModel defaultModel];
         __weak __typeof(self)weakSelf = self;
@@ -93,8 +88,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     }
     return _statusModel;
 }
--(KingCacheVideoPlayerConfig *)config
-{
+-(KingCacheVideoPlayerConfig *)config {
     if (!_config) {
         _config =[KingCacheVideoPlayerConfig defaultConfig];
     }
@@ -106,8 +100,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     }
     return _actIndicator;
 }
--(void)playStatusObserver:(void (^)(KingPlayerStatusModel *))status
-{
+-(void)playStatusObserver:(void (^)(KingPlayerStatusModel *))status {
     self.playStatusBlock =status;
 }
 #pragma mark play
@@ -129,8 +122,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
         [self playWithVideoUrl:url showView:showView];
     }
 }
-- (void)playWithVideoUrl:(NSURL *)url showView:(UIView *)showView
-{
+- (void)playWithVideoUrl:(NSURL *)url showView:(UIView *)showView {
     
     [self.player pause];
     [self releasePlayer];
@@ -140,7 +132,6 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     self.statusModel.KingPlayerDuration(0).KingPlayerCurrent(0);
     
     _showView = showView;
-    _showViewRect = showView.frame;
     _showView.backgroundColor = self.config.playBGColor;
     
     NSString *str = [url absoluteString];
@@ -201,38 +192,42 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     [self createUI];
 
 }
--(void)createUI{
+-(void)createUI {
     _showView.userInteractionEnabled = YES;
     [self.playerView removeFromSuperview];
-    self.playerView.frame =CGRectMake(0, 0, _showView.frame.size.width, _showView.frame.size.height);
     [_showView insertSubview:self.playerView atIndex:0];
+
+    [self.playerView addConstraintFromLeft:0];
+    [self.playerView addConstraintFromRight:0];
+    [self.playerView addConstraintFromTop:0];
+    [self.playerView addConstraintFromBottom:0];
     
-    self.actIndicator.frame = CGRectMake((CGRectGetWidth(self.playerView.frame) - 44) / 2, (CGRectGetHeight(self.playerView.frame) - 44) / 2, 44, 44);
     [self.actIndicator removeFromSuperview];
-    if (!self.config.hiddenIndicatorView) {
+    
+    if (self.config.indicatorStyle != hidden) {
         [_showView insertSubview:self.actIndicator aboveSubview:self.playerView];
+        self.actIndicator.activityIndicatorViewStyle = (self.config.indicatorStyle == white)?UIActivityIndicatorViewStyleWhite:UIActivityIndicatorViewStyleGray;
+        [self.actIndicator addConstraintCenteringXY];
+        [self.actIndicator addConstraintWidth:44 height:44];
     }
-    self.actIndicator.activityIndicatorViewStyle = self.config.indicatorViewStyle;
-    self.actIndicator.hidden = NO;
+    self.actIndicator.hidden = (self.config.indicatorStyle == hidden);
+
 }
 #pragma mark - observer
-- (void)appDidEnterBackground
-{
+- (void)appDidEnterBackground {
     if (self.config.stopInBackground) {
         [self pause];
         self.state = KingPlayerStatePause;
         self.isPauseByUser = NO;
     }
 }
-- (void)appDidEnterPlayGround
-{
+- (void)appDidEnterPlayGround {
     if (!self.isPauseByUser) {
         [self resume];
         self.state = KingPlayerStatePlaying;
     }
 }
-- (void)playerItemDidPlayToEnd:(NSNotification *)notification
-{
+- (void)playerItemDidPlayToEnd:(NSNotification *)notification {
     //如果当前播放次数小于重复播放次数，继续重新播放
     if (self.statusModel.playCount < self.config.playRepatCount) {
         NSInteger count =self.statusModel.playCount;
@@ -246,13 +241,11 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     }
 }
 //在监听播放器状态中处理比较准确
-- (void)playerItemPlaybackStalled:(NSNotification *)notification
-{
+- (void)playerItemPlaybackStalled:(NSNotification *)notification {
     // 这里网络不好的时候，就会进入，不做处理，会在playbackBufferEmpty里面缓存之后重新播放
     NSLog(@"buffing----buffing");
 }
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     AVPlayerItem *playerItem = (AVPlayerItem *)object;
     
     if ([KingVideoPlayerItemStatusKeyPath isEqualToString:keyPath]) {
@@ -283,8 +276,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     }
 }
 
-- (void)monitoringPlayback:(AVPlayerItem *)playerItem
-{
+- (void)monitoringPlayback:(AVPlayerItem *)playerItem {
     //视频总时间
     self.statusModel.KingPlayerDuration((playerItem.duration.value / playerItem.duration.timescale));
     [self.player play];
@@ -317,8 +309,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     }
 }
 
-- (void)calculateDownloadProgress:(AVPlayerItem *)playerItem
-{
+- (void)calculateDownloadProgress:(AVPlayerItem *)playerItem {
     NSArray *loadedTimeRanges = [playerItem loadedTimeRanges];
     CMTimeRange timeRange = [loadedTimeRanges.firstObject CMTimeRangeValue];// 获取缓冲区域
     float startSeconds = CMTimeGetSeconds(timeRange.start);
@@ -329,8 +320,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     self.loadedProgress = timeInterval / totalDuration;
 }
 
-- (void)bufferingSomeSecond
-{
+- (void)bufferingSomeSecond {
     // playbackBufferEmpty会反复进入，因此在bufferingOneSecond延时播放执行完之前再调用bufferingSomeSecond都忽略
     static BOOL isBuffering = NO;
     if (isBuffering) {
@@ -359,8 +349,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     });
 }
 
-- (void)setLoadedProgress:(CGFloat)loadedProgress
-{
+- (void)setLoadedProgress:(CGFloat)loadedProgress {
     if (_loadedProgress == loadedProgress) {
         return;
     }
@@ -370,8 +359,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     self.statusModel.KingPlayerLoadedProgress(_loadedProgress);
 }
 
-- (void)setState:(KingPlayerState)state
-{
+- (void)setState:(KingPlayerState)state {
     if (state != KingPlayerStateBuffering) {
         [self.actIndicator stopAnimating];
     }
@@ -414,8 +402,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 /**
  *  继续播放
  */
-- (void)resume
-{
+- (void)resume {
     if (!self.currentPlayerItem) {
         return;
     }
@@ -425,15 +412,14 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 /**
  重播
  */
--(void)replay{
+-(void)replay {
     [self seekToTime:0.0];
     self.state = KingPlayerStatePlaying;
 }
 /**
  *  暂停或继续播放
  */
-- (void)pauseOrPlay
-{
+- (void)pauseOrPlay {
     if (!self.currentPlayerItem) {
         return;
     }
@@ -448,8 +434,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 /**
  *  暂停播放
  */
-- (void)pause
-{
+- (void)pause {
     if (!self.currentPlayerItem) {
         return;
     }
@@ -460,8 +445,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 /**
  *  停止播放
  */
-- (void)stop
-{
+- (void)stop {
     self.isPauseByUser = YES;
     self.loadedProgress = 0;
     self.statusModel.KingPlayerDuration(0).KingPlayerCurrent(0);
@@ -473,8 +457,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 
 #pragma mark - KingLoaderURLConnectionDelegate
 
-- (void)didFinishLoadingWithTask:(KingVideoRequestTask *)task
-{
+- (void)didFinishLoadingWithTask:(KingVideoRequestTask *)task {
     self.statusModel.KingPlayerPlayLoadingFinish(task.isFinishLoad);
 }
 
@@ -484,8 +467,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
 //服务器内部错误：-1004
 //找不到服务器：-1003
 
-- (void)didFailLoadingWithTask:(KingVideoRequestTask *)task withError:(NSInteger )errorCode
-{
+- (void)didFailLoadingWithTask:(KingVideoRequestTask *)task withError:(NSInteger )errorCode {
     self.statusModel.KingPlayerErrorState(errorCode);
     self.state = KingPlayerStateLoadError;
 }
@@ -512,8 +494,7 @@ static NSString *const KingVideoPlayerItemPresentationSizeKeyPath = @"presentati
     self.statusModel.KingPlayerPlayCount(1);
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     [self releasePlayer];
 }
 @end
